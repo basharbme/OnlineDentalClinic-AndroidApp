@@ -1,4 +1,4 @@
-package com.healthapps.onlinedentalclinic.ui.home
+package com.healthapps.onlinedentalclinic.ui.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.healthapps.onlinedentalclinic.R
 
-class HomeFragment : Fragment() {
+class AccountFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: AccountViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,8 +20,8 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+            ViewModelProviders.of(this).get(AccountViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_account, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(this, Observer {
             textView.text = it

@@ -1,10 +1,10 @@
-package com.healthapps.onlinedentalclinic.ui.home
+package com.healthapps.onlinedentalclinic.ui.account
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class AccountViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
