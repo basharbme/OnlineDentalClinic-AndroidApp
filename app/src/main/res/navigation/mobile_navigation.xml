@@ -3,23 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_appointments">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.healthapps.onlinedentalclinic.ui.account.AccountFragment"
-        android:label="@string/title_home"
+        android:id="@+id/navigation_appointments"
+        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.AppointmentFragment"
+        android:label="@string/title_appointments"
+        tools:layout="@layout/fragment_appointments" />
+
+    <fragment
+        android:id="@+id/navigation_dental_info"
+        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.DentalInfoFragment"
+        android:label="@string/title_dental_info"
+        tools:layout="@layout/fragment_dental_info" />
+
+    <fragment
+        android:id="@+id/navigation_sales"
+        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.SalesFragment"
+        android:label="@string/title_sales"
+        tools:layout="@layout/fragment_sales" />
+
+    <fragment
+        android:id="@+id/navigation_help"
+        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.HelpFragment"
+        android:label="@string/title_help"
+        tools:layout="@layout/fragment_help" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.AccountFragment"
+        android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.healthapps.onlinedentalclinic.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.healthapps.onlinedentalclinic.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

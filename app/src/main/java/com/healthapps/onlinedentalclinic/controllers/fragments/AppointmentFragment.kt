@@ -1,4 +1,4 @@
-package com.healthapps.onlinedentalclinic.ui.dashboard
+package com.healthapps.onlinedentalclinic.controllers.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.healthapps.onlinedentalclinic.R
 
-class DashboardFragment : Fragment() {
+class AppointmentFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var homeViewModel: AppointmentsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        homeViewModel =
+            ViewModelProviders.of(this).get(AppointmentsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_appointments, container, false)
+        val textView: TextView = root.findViewById(R.id.text_appointments)
+        homeViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

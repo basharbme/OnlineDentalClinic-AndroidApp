@@ -1,4 +1,4 @@
-package com.healthapps.onlinedentalclinic.ui.notifications
+package com.healthapps.onlinedentalclinic.controllers.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.healthapps.onlinedentalclinic.R
 
-class NotificationsFragment : Fragment() {
+class DentalInfoFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var dashboardViewModel: DentalInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(this, Observer {
+        dashboardViewModel =
+            ViewModelProviders.of(this).get(DentalInfoViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_dental_info, container, false)
+        val textView: TextView = root.findViewById(R.id.text_detal_info)
+        dashboardViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

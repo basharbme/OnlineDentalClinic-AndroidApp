@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Online Dental Clinic</string>
+    <string name="title_appointments">Appointments</string>
+    <string name="title_dental_info">Dental Information</string>
+    <string name="title_sales">Sales</string>
+    <string name="title_help">Help</string>
     <string name="title_account">Account</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="register_me">Register me</string>
+    <string name="email">email</string>
+    <string name="login">Login</string>
+    <string name="password">password</string>
 </resources>
