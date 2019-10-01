@@ -9,4 +9,6 @@
     <string name="email">email</string>
     <string name="login">Login</string>
     <string name="password">password</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
 </resources>
