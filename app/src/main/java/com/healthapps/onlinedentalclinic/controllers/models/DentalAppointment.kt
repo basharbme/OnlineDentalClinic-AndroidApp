@@ -1,5 +1,7 @@
 package com.healthapps.onlinedentalclinic.controllers.models
 
+import java.io.Serializable
+
 data class DentalAppointment (
     val id: String,
     val patients_id: String,
@@ -8,6 +10,14 @@ data class DentalAppointment (
     val services_id: String,
     val date: String,
     val hour: String
-    ){
-
+    ): Serializable {
+    constructor() : this (
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    )
 }
