@@ -9,4 +9,8 @@
     <string name="email">email</string>
     <string name="login">Login</string>
     <string name="password">password</string>
+    <string name="textGeneralError">incorrect email or password</string>
+    <string name="textPasswordError">enter your password</string>
+    <string name="textEmailError">enter your email</string>
+    <string name="textInvalidEmail">Invalid email</string>
 </resources>
