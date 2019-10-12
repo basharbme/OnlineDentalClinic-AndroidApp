@@ -3,8 +3,11 @@ package com.healthapps.onlinedentalclinic.controllers.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import com.healthapps.onlinedentalclinic.R
+import com.healthapps.onlinedentalclinic.controllers.models.Person
+import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -12,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
     private var password: String = ""
     private var validEmail: Boolean = false
     private var validPassword : Boolean = false
+    private var person: Person = Person()
     private val emailPattern = Patterns.EMAIL_ADDRESS
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +53,33 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            if(email == "sergioespinal@gmail.com" && password == "sergio123"){
-                val intent = Intent(this, PatientActivity::class.java)
-                startActivity(intent)
+            person.email = email
+            person.password = password
+
+            if(validEmail && validPassword){
+                OnlineDentalClinicAPI.login(
+                    person = person,
+                    responseHandler = {
+                        Log.d("User accepted", "$it")
+                        textGeneralError.text = ""
+
+                        val intent = Intent(this, PatientActivity::class.java)
+                        intent.putExtra("user", it?.toString())
+                        startActivity(intent)
+                    },
+                    responseError = {
+                        val str: String = it.toString()
+
+                        if("Password incorrect" in str){
+                            textGeneralError.text = getString(R.string.textGeneralError)
+                            Log.d("Error password", "Password incorrect")
+                        }else if("[]" in str){
+                            textGeneralError.text = getString(R.string.textGeneralError)
+                            Log.d("Error email", "User not found")
+                        }
+                    },
+                    token = getString(R.string.token)
+                )
             }
         }
 
