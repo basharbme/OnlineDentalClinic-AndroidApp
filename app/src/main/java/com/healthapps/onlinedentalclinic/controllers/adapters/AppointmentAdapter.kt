@@ -25,9 +25,9 @@ class AppointmentAdapter(private val dentalAppointmentsList: ArrayList<DentalApp
         p0.month?.text = partsDate[1]
         p0.year?.text = partsDate[2]
         p0.time?.text = dentalAppointmentsList[p1].hour
-        p0.dentist?.text = dentalAppointmentsList[p1].dentists_id
-        p0.clinic?.text = dentalAppointmentsList[p1].clinics_id
-        p0.service?.text = dentalAppointmentsList[p1].services_id
+        p0.dentist?.text = dentalAppointmentsList[p1].dentists_id.fullname
+        p0.clinic?.text = dentalAppointmentsList[p1].clinics_id.name
+        p0.service?.text = dentalAppointmentsList[p1].services_id.name
     }
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val day = itemView.findViewById<TextView>(R.id.textDay)

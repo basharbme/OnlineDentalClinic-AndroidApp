@@ -1,5 +1,15 @@
 package com.healthapps.onlinedentalclinic.controllers.networking
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.common.Priority
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.androidnetworking.interfaces.ParsedRequestListener
+import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
+import org.json.JSONObject
+
 
 class OnlineDentalClinicAPI{
     companion object{
@@ -15,5 +25,56 @@ class OnlineDentalClinicAPI{
         private val servicesURL = "$BASE_URL/services"
         private val salesURL = "$BASE_URL/sales"
         private val schedules = "$BASE_URL/schedules"
+
+        fun getDentalAppointments(responseHandler: (ArrayList<DentalAppointment>?) -> Unit,
+                                  responseError: (ANError?) -> Unit, token: String){
+            get(dentalAppointmentsURL, responseHandler, responseError, token)
+        }
+
+        //Post-all
+        private inline fun post(jsonObj: JSONObject, url: String,
+                                crossinline responseHandler: (JSONObject?) -> Unit,
+                                crossinline responseError: (ANError?) -> Unit, token: String){
+            AndroidNetworking.post(url)
+                .addHeaders("Authorization", "Bearer $token")
+                .addHeaders("Content-Type", "application/json")
+                .addJSONObjectBody(jsonObj)
+                .setTag(TAG)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(
+                    object : JSONObjectRequestListener {
+                        override fun onResponse(response: JSONObject?) {
+                            responseHandler(response)
+                        }
+
+                        override fun onError(anError: ANError?) {
+                            responseError(anError)
+                        }
+                    }
+                )
+        }
+
+        private inline fun <reified T> get(url: String, crossinline responseHandler: (ArrayList<T>?) -> Unit,
+                                          crossinline responseError: (ANError?) -> Unit, token: String){
+            AndroidNetworking.get(url)
+                .addHeaders("Authorization", "Bearer $token")
+                .setTag(TAG)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsObjectList(
+                    T::class.java,
+                    object : ParsedRequestListener<ArrayList<T>> {
+                        override fun onResponse(response: ArrayList<T>) {
+                            responseHandler(response)
+                            Log.d("dental appointments", response.toString())
+                        }
+
+                        override fun onError(anError: ANError?) {
+                            responseError(anError)
+                        }
+                    }
+                )
+        }
     }
 }

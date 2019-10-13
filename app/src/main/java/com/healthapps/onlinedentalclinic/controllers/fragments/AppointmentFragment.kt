@@ -2,6 +2,7 @@ package com.healthapps.onlinedentalclinic.controllers.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,31 +13,44 @@ import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.adapters.AppointmentAdapter
 import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
+import com.healthapps.onlinedentalclinic.controllers.models.Person
+import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
 
 class AppointmentFragment : Fragment() {
-
-    @SuppressLint("WrongConstant")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_appointments, container, false)
-        val recyclerView = root.findViewById<RecyclerView>(R.id.RV_dental_appointments)
-        recyclerView.layoutManager = LinearLayoutManager(root.context, LinearLayout.VERTICAL, false)
-//        Create an arraylist
-        val dataList = ArrayList<DentalAppointment>()
-        dataList.add(DentalAppointment("1", "1", "Alex Ugarte",
-            "Clinica 1", "Curación de muelas", "30/12/19", "3:30 PM"))
-        dataList.add(DentalAppointment("2", "2","Jordi Ramos",
-            "Clinica 2", "Servicio 2", "24/03/19", "5:00 PM"))
-        dataList.add(DentalAppointment("3", "", "Elvis Sams",
-            "Clinic 3", "Servicio 3", "11/09/19", "2:20 PM"))
-//        pass the values to RvAdapter
-        val appAdapter = AppointmentAdapter(dataList)
-//        set the recyclerView to the adapter
-        recyclerView.adapter = appAdapter
+        return inflater.inflate(R.layout.fragment_appointments, container, false)
+    }
 
-        return root
+    @SuppressLint("WrongConstant")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.RV_dental_appointments)
+        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
+
+        OnlineDentalClinicAPI.getDentalAppointments(
+            responseHandler = {
+                //filter
+                val person = Person()
+                person.email = "healthappscompany@gmail.com"
+                person.password = "sergio1espinal"
+
+                val datalist: ArrayList<DentalAppointment> = it as ArrayList<DentalAppointment>
+                datalist.filter { user -> user.patients_id.email == person.email &&
+                        user.patients_id.password == person.password }
+                //pass the values to RvAdapter
+                val appAdapter = AppointmentAdapter(datalist)
+               //set the recyclerView to the adapter
+                recyclerView.adapter = appAdapter
+            },
+            responseError = {
+                Log.d("Error", "Error $it.errorCode: $it.errorBody $it.localizedMessage")
+            },
+            token = getString(R.string.token)
+        )
     }
 }
