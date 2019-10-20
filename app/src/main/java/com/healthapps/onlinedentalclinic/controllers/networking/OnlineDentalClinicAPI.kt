@@ -1,7 +1,8 @@
 package com.healthapps.onlinedentalclinic.controllers.networking
 
-import android.content.ContentValues.TAG
+
 import android.util.Log
+import com.healthapps.onlinedentalclinic.controllers.models.Person
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
@@ -25,10 +26,17 @@ class OnlineDentalClinicAPI{
         private val servicesURL = "$BASE_URL/services"
         private val salesURL = "$BASE_URL/sales"
         private val schedules = "$BASE_URL/schedules"
+        private const val TAG = "OnlineDentalClinicApi"
 
         fun getDentalAppointments(responseHandler: (ArrayList<DentalAppointment>?) -> Unit,
-                                  responseError: (ANError?) -> Unit, token: String){
+                                  responseError: (ANError?) -> Unit, token: String) {
             get(dentalAppointmentsURL, responseHandler, responseError, token)
+        }
+
+        //Login
+        fun login(person: Person, responseHandler: (JSONObject?) -> Unit,
+                  responseError: (ANError?) -> Unit, token: String){
+            post(person.convertToJson(), "$peopleURL/login", responseHandler, responseError, token)
         }
 
         //Post-all
