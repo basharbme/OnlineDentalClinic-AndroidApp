@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
@@ -15,6 +16,9 @@ import com.healthapps.onlinedentalclinic.controllers.adapters.AppointmentAdapter
 import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
 import com.healthapps.onlinedentalclinic.controllers.models.Person
 import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
+import kotlinx.android.synthetic.main.fragment_appointments.*
+
+
 
 class AppointmentFragment : Fragment() {
     override fun onCreateView(
@@ -52,5 +56,14 @@ class AppointmentFragment : Fragment() {
             },
             token = getString(R.string.token)
         )
+
+        floating_action_button.setOnClickListener {
+            val createAppointments = CreateAppointmentFragment()
+            val fragmentTransaction: FragmentTransaction = getFragmentManager()!!.beginTransaction()
+
+            fragmentTransaction.replace(R.id.nav_host_fragment, createAppointments)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
     }
 }

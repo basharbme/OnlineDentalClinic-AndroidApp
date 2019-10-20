@@ -11,4 +11,11 @@
     <string name="password">password</string>
     <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
+    <string name="textView_clinic">Clinic</string>
+    <string name="textView_dentist">Dentist</string>
+    <string name="textView_service">Service</string>
+    <string name="textView_date">Date</string>
+    <string name="textView_hour">Hour</string>
+    <string name="create_appointments">Create Appointment</string>
+    <string name="select_item">Select an item</string>
 </resources>

@@ -34,4 +34,9 @@
         android:name="com.healthapps.onlinedentalclinic.controllers.fragments.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/create_appointments"
+        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.CreateAppointmentFragment"
+        android:label="@string/create_appointments" />
 </navigation>

@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.healthapps.onlinedentalclinic.R
 
 class PatientActivity : AppCompatActivity() {
+    var tst = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
