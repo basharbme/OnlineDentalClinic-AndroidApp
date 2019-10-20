@@ -8,9 +8,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.healthapps.onlinedentalclinic.R
+import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 
 class PatientActivity : AppCompatActivity() {
-    var tst = ""
+    var clinic: Clinic = Clinic()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

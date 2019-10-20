@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.activities.PatientActivity
@@ -32,19 +33,26 @@ class CreateAppointmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var clinic = (activity as PatientActivity).clinic
+
         //Calendar
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get((Calendar.DAY_OF_MONTH))
 
-        //
-        var tst = (activity as PatientActivity).tst
+        textViewClinic.setOnClickListener {
+            val clinicFragment = ClinicFragment()
+            val fragmentTransaction: FragmentTransaction = getFragmentManager()!!.beginTransaction()
+
+            fragmentTransaction.replace(R.id.nav_host_fragment, clinicFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
 
         textViewDate.setOnClickListener{
             val dpd = DatePickerDialog(view.context, DatePickerDialog.OnDateSetListener{
                 view, cyear, cmonth, cday -> textViewDate.text = "" + cday + "/" + cmonth + "/" + cyear;
-                tst = "" + cday + "/" + cmonth + "/" + cyear
             }, year, month, day)
 
             dpd.show()
@@ -60,7 +68,7 @@ class CreateAppointmentFragment : Fragment() {
             TimePickerDialog(view.context, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE), false).show()
 
-            Log.d("tst", tst)
+            Log.d("Clinic object", clinic.toString())
         }
     }
 }

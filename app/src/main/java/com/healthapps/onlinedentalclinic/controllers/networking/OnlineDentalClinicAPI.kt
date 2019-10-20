@@ -8,6 +8,7 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.interfaces.ParsedRequestListener
+import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
 import org.json.JSONObject
 
@@ -28,15 +29,20 @@ class OnlineDentalClinicAPI{
         private val schedules = "$BASE_URL/schedules"
         private const val TAG = "OnlineDentalClinicApi"
 
+        //Login
+        fun login(person: Person, responseHandler: (JSONObject?) -> Unit,
+                  responseError: (ANError?) -> Unit, token: String){
+            post(person.convertToJson(), "$peopleURL/login", responseHandler, responseError, token)
+        }
+
         fun getDentalAppointments(responseHandler: (ArrayList<DentalAppointment>?) -> Unit,
                                   responseError: (ANError?) -> Unit, token: String) {
             get(dentalAppointmentsURL, responseHandler, responseError, token)
         }
 
-        //Login
-        fun login(person: Person, responseHandler: (JSONObject?) -> Unit,
-                  responseError: (ANError?) -> Unit, token: String){
-            post(person.convertToJson(), "$peopleURL/login", responseHandler, responseError, token)
+        fun getClincs(responseHandler: (ArrayList<Clinic>?) -> Unit,
+                      responseError: (ANError?) -> Unit, token: String ){
+            get(clinicsURL, responseHandler, responseError, token)
         }
 
         //Post-all
@@ -75,7 +81,7 @@ class OnlineDentalClinicAPI{
                     object : ParsedRequestListener<ArrayList<T>> {
                         override fun onResponse(response: ArrayList<T>) {
                             responseHandler(response)
-                            Log.d("dental appointments", response.toString())
+                            Log.d("clinics", response.toString())
                         }
 
                         override fun onError(anError: ANError?) {
