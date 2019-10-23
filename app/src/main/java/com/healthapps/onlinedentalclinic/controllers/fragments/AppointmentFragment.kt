@@ -62,6 +62,7 @@ class AppointmentFragment : Fragment() {
             val fragmentTransaction: FragmentTransaction = getFragmentManager()!!.beginTransaction()
 
             fragmentTransaction.replace(R.id.nav_host_fragment, createAppointments)
+            fragmentTransaction.setPrimaryNavigationFragment(createAppointments)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }

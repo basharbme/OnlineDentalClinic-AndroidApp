@@ -25,4 +25,5 @@
     <string name="clinic_name">Name</string>
     <string name="clinic_address">Clinic address</string>
     <string name="attention_hours">Attention hour</string>
+    <string name="save_appointment">Save</string>
 </resources>

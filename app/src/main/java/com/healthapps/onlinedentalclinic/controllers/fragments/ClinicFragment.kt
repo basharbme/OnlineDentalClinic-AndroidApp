@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -34,7 +35,6 @@ class ClinicFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.clinics_list)
-        var clinic = (activity as PatientActivity).clinic
 
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
 
@@ -44,8 +44,13 @@ class ClinicFragment : Fragment() {
                 val adapter = ClinicAdapter(dataList, object : ClinicAdapter.ClickListener{
                     override fun onClick(position: Int) {
                         val clinicSelected = dataList[position]
-                        Toast.makeText(context, "clicked on " + clinicSelected.name, Toast.LENGTH_SHORT).show()
-                        clinic = clinicSelected
+                        (activity as PatientActivity).clinic = clinicSelected
+                        //Toast.makeText(context, "clicked on " + clinic.name, Toast.LENGTH_SHORT).show()
+                        val me: Fragment  = this@ClinicFragment
+                        fragmentManager!!.beginTransaction().addToBackStack(null).remove(me).commit()
+                        //getFragmentManager()!!.popBackStack()
+                        (activity as PatientActivity).textViewClinic!!.text = clinicSelected.name + " address: " + clinicSelected.address
+                        (activity as PatientActivity).button!!.visibility = View.VISIBLE
                     }
                 })
 
