@@ -46,8 +46,8 @@ class ClinicAdapter(private val clinicList: ArrayList<Clinic>, private val liste
         }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameClinic = itemView.findViewById<TextView>(R.id.textClinic)
-        val addressClinic = itemView.findViewById<TextView>(R.id.textAddress)
+        val nameClinic = itemView.findViewById<TextView>(R.id.textDentist)
+        val addressClinic = itemView.findViewById<TextView>(R.id.textSpecialty)
         val attentionClinic = itemView.findViewById<TextView>(R.id.textAttention)
         val cardViewClinic = itemView.findViewById<CardView>(R.id.card_clinics)
     }

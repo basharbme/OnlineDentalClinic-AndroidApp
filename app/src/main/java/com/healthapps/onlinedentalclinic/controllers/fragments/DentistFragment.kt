@@ -13,45 +13,42 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.activities.PatientActivity
-import com.healthapps.onlinedentalclinic.controllers.adapters.ClinicAdapter
-import com.healthapps.onlinedentalclinic.controllers.models.Clinic
+import com.healthapps.onlinedentalclinic.controllers.adapters.DentistAdapter
+import com.healthapps.onlinedentalclinic.controllers.models.Person
 import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
 
-
-class ClinicFragment : Fragment() {
+class DentistFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clinic, container, false)
+        return inflater.inflate(R.layout.fragment_dentist, container, false)
     }
 
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.clinics_list)
-
+        val recyclerView = view.findViewById<RecyclerView>(R.id.dentists_list)
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
 
-        OnlineDentalClinicAPI.getClinics(
+        OnlineDentalClinicAPI.getDentists(
             responseHandler = {
-                val dataList: ArrayList<Clinic> = it as ArrayList<Clinic>
-                val adapter = ClinicAdapter(dataList, object : ClinicAdapter.ClickListener{
+                val dataList: ArrayList<Person> = it as ArrayList<Person>
+                val adapter = DentistAdapter(dataList, object : DentistAdapter.ClickLister{
                     override fun onClick(position: Int) {
-                        val clinicSelected = dataList[position]
-                        (activity as PatientActivity).clinic = clinicSelected
-                        //Toast.makeText(context, "clicked on " + clinic.name, Toast.LENGTH_SHORT).show()
-                        val me: Fragment  = this@ClinicFragment
+                        val dentistSelect = dataList[position]
+                        val me: Fragment = this@DentistFragment
+
+                        (activity as PatientActivity).dentist = dataList[position]
                         fragmentManager!!.beginTransaction().remove(me).commit()
                         fragmentManager!!.popBackStack()
-                        (activity as PatientActivity).textViewClinic!!.text = clinicSelected.name
+                        (activity as PatientActivity).textViewDentist!!.text = dentistSelect.fullname
                         (activity as PatientActivity).button!!.visibility = View.VISIBLE
                     }
                 })
-
                 recyclerView.adapter = adapter
             },
             responseError = {

@@ -35,7 +35,7 @@ class AppointmentAdapter(private val dentalAppointmentsList: ArrayList<DentalApp
         val year = itemView.findViewById<TextView>(R.id.TextYear)
         val time = itemView.findViewById<TextView>(R.id.textTime)
         val dentist = itemView.findViewById<TextView>(R.id.textDentist)
-        val clinic = itemView.findViewById<TextView>(R.id.textClinic)
+        val clinic = itemView.findViewById<TextView>(R.id.textDentist)
         val service = itemView.findViewById<TextView>(R.id.textService)
     }
 }

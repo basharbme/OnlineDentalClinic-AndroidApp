@@ -40,12 +40,18 @@ class OnlineDentalClinicAPI{
             get(dentalAppointmentsURL, responseHandler, responseError, token)
         }
 
-        fun getClincs(responseHandler: (ArrayList<Clinic>?) -> Unit,
-                      responseError: (ANError?) -> Unit, token: String ){
+        //Get-All
+        fun getClinics(responseHandler: (ArrayList<Clinic>?) -> Unit,
+                       responseError: (ANError?) -> Unit, token: String ){
             get(clinicsURL, responseHandler, responseError, token)
         }
+        //Get-All
+        fun getDentists(responseHandler: (ArrayList<Person>?) -> Unit,
+                        responseError: (ANError?) -> Unit, token: String){
+            get(peopleURL, responseHandler, responseError, token)
+        }
 
-        //Post-all
+        //Post-All
         private inline fun post(jsonObj: JSONObject, url: String,
                                 crossinline responseHandler: (JSONObject?) -> Unit,
                                 crossinline responseError: (ANError?) -> Unit, token: String){

@@ -26,4 +26,6 @@
     <string name="clinic_address">Clinic address</string>
     <string name="attention_hours">Attention hour</string>
     <string name="save_appointment">Save</string>
+    <string name="dentist_specialty">Specialty</string>
+    <string name="dentist_schedule">Schedule</string>
 </resources>

@@ -41,7 +41,7 @@
                 android:textColor="#424242"
                 android:textSize="8sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textClinic" />
+                app:layout_constraintTop_toBottomOf="@+id/textDentist" />
 
             <TextView
                 android:id="@+id/textDentist"
@@ -116,7 +116,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textClinic"
+                android:id="@+id/textDentist"
                 android:layout_width="150dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="8dp"

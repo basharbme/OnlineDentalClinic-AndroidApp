@@ -2,15 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="198dp"
+    android:layout_height="140dp"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_clinics"
+        android:id="@+id/card_dentist"
         android:layout_width="match_parent"
-        android:layout_height="198dp"
+        android:layout_height="140dp"
         android:layout_marginLeft="@dimen/mtrl_card_spacing"
         android:layout_marginTop="@dimen/mtrl_card_spacing"
         android:layout_marginRight="@dimen/mtrl_card_spacing"
@@ -18,36 +17,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="198dp">
-
-            <TextView
-                android:id="@+id/attentionClinic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="64dp"
-                android:text="@string/attention_hours"
-                android:textColor="#424242"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/textSpecialty" />
-
-            <TextView
-                android:id="@+id/textAttention"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#212121"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/attentionClinic" />
+            android:layout_height="140dp">
 
             <TextView
                 android:id="@+id/nameDentist"
@@ -84,7 +54,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:text="@string/clinic_address"
+                android:text="@string/dentist_specialty"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -10,7 +10,7 @@ data class Person(
     var email: String,
     var username: String,
     var password: String,
-    var roles_id: Role
+    var roleId: Role
 ): Serializable{
     constructor(): this(
         0,
@@ -23,7 +23,7 @@ data class Person(
     )
     fun convertToJson(): JSONObject{
         val jsonPerson = JSONObject()
-        val jsonRole = roles_id.convertToJson()
+        val jsonRole = roleId.convertToJson()
 
         jsonPerson.put("id", id)
         jsonPerson.put("fullname", fullname)
@@ -31,7 +31,7 @@ data class Person(
         jsonPerson.put("email", email)
         jsonPerson.put("username", username)
         jsonPerson.put("password", password)
-        jsonPerson.put("roles_id", jsonRole)
+        jsonPerson.put("roleId", jsonRole)
 
         return jsonPerson
     }
