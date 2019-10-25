@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background = "#FFFFFF"
-    tools:context=".controllers.fragments.DentistFragment">
+    tools:context=".controllers.fragments.ServiceFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dentists_list"
+        android:id="@+id/services_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

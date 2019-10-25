@@ -10,6 +10,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.interfaces.ParsedRequestListener
 import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
+import com.healthapps.onlinedentalclinic.controllers.models.Service
 import org.json.JSONObject
 
 
@@ -45,10 +46,17 @@ class OnlineDentalClinicAPI{
                        responseError: (ANError?) -> Unit, token: String ){
             get(clinicsURL, responseHandler, responseError, token)
         }
+
         //Get-All
         fun getDentists(responseHandler: (ArrayList<Person>?) -> Unit,
                         responseError: (ANError?) -> Unit, token: String){
             get(peopleURL, responseHandler, responseError, token)
+        }
+
+        //Get-All
+        fun getService(responseHandler: (ArrayList<Service>?) -> Unit,
+                       responseError: (ANError?) -> Unit, token: String){
+            get(servicesURL, responseHandler, responseError, token)
         }
 
         //Post-All

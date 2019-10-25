@@ -48,7 +48,7 @@ class ClinicFragment : Fragment() {
                         fragmentManager!!.beginTransaction().remove(me).commit()
                         fragmentManager!!.popBackStack()
                         (activity as PatientActivity).textViewClinic!!.text = clinicSelected.name
-                        (activity as PatientActivity).button!!.visibility = View.VISIBLE
+                        //(activity as PatientActivity).button!!.visibility = View.VISIBLE
                     }
                 })
 

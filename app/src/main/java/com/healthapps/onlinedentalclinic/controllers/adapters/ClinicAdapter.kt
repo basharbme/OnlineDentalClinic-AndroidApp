@@ -37,18 +37,16 @@ class ClinicAdapter(private val clinicList: ArrayList<Clinic>, private val liste
         p0.nameClinic?.text = clinicList[p1].name
         p0.addressClinic?.text = clinicList[p1].address
         p0.attentionClinic?.text = clinicList[p1].attention_hours
-        p0.cardViewClinic.setOnClickListener( object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    if (clickListener != null)
-                        clickListener?.onClick(p1)
-                }
-            })
+        p0.cardViewClinic.setOnClickListener {
+            if (clickListener != null)
+                clickListener?.onClick(p1)
+            }
         }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameClinic = itemView.findViewById<TextView>(R.id.textDentist)
+        val nameClinic = itemView.findViewById<TextView>(R.id.textService)
         val addressClinic = itemView.findViewById<TextView>(R.id.textSpecialty)
-        val attentionClinic = itemView.findViewById<TextView>(R.id.textAttention)
+        val attentionClinic = itemView.findViewById<TextView>(R.id.textCost)
         val cardViewClinic = itemView.findViewById<CardView>(R.id.card_clinics)
     }
 }

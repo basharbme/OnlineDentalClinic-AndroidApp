@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_clinics"
+        android:id="@+id/card_services"
         android:layout_width="match_parent"
         android:layout_height="198dp"
         android:layout_marginLeft="@dimen/mtrl_card_spacing"
@@ -20,22 +20,22 @@
             android:layout_height="198dp">
 
             <TextView
-                android:id="@+id/attention_hour"
+                android:id="@+id/costService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:text="@string/attention_hours"
+                android:text="@string/cost"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/textAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/textDescription" />
 
             <TextView
-                android:id="@+id/textAttention"
+                android:id="@+id/textCost"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
@@ -46,10 +46,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/attention_hour" />
+                app:layout_constraintTop_toBottomOf="@+id/costService" />
 
             <TextView
-                android:id="@+id/nameClinic"
+                android:id="@+id/nameService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -74,16 +74,16 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/nameClinic" />
+                app:layout_constraintTop_toBottomOf="@+id/nameService" />
 
             <TextView
-                android:id="@+id/clinicAddress"
+                android:id="@+id/descriptionService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:text="@string/clinic_address"
+                android:text="@string/description"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textName" />
 
             <TextView
-                android:id="@+id/textAddress"
+                android:id="@+id/textDescription"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
@@ -103,7 +103,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/clinicAddress"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionService"
                 app:layout_constraintVertical_bias="0.0" />
 
             <View

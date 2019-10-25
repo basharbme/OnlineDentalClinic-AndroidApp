@@ -13,39 +13,39 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.activities.PatientActivity
-import com.healthapps.onlinedentalclinic.controllers.adapters.DentistAdapter
-import com.healthapps.onlinedentalclinic.controllers.models.Person
+import com.healthapps.onlinedentalclinic.controllers.adapters.ServiceAdapter
+import com.healthapps.onlinedentalclinic.controllers.models.Service
 import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
+import kotlinx.android.synthetic.main.fragment_create_appointment.*
 
-class DentistFragment : Fragment() {
-
+class ServiceFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dentist, container, false)
+        return inflater.inflate(R.layout.fragment_service, container, false)
     }
 
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.dentists_list)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.services_list)
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
 
-        OnlineDentalClinicAPI.getDentists(
+        OnlineDentalClinicAPI.getService(
             responseHandler = {
-                val dataList: ArrayList<Person> = it as ArrayList<Person>
-                val adapter = DentistAdapter(dataList, object : DentistAdapter.ClickLister{
+                val dataList: ArrayList<Service> = it as ArrayList<Service>
+                val adapter = ServiceAdapter(dataList, object : ServiceAdapter.ClickListener{
                     override fun onClick(position: Int) {
-                        val dentistSelect = dataList[position]
-                        val me: Fragment = this@DentistFragment
+                        val serviceSelect = dataList[position]
+                        val me: Fragment = this@ServiceFragment
 
-                        (activity as PatientActivity).dentist = dataList[position]
+                        (activity as PatientActivity).service = serviceSelect
+                        (activity as PatientActivity).textViewService!!.text = serviceSelect.name
                         fragmentManager!!.beginTransaction().remove(me).commit()
                         fragmentManager!!.popBackStack()
-                        (activity as PatientActivity).textViewDentist!!.text = dentistSelect.fullname
                         //(activity as PatientActivity).button!!.visibility = View.VISIBLE
                     }
                 })

@@ -14,14 +14,16 @@ import androidx.navigation.ui.setupWithNavController
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 import com.healthapps.onlinedentalclinic.controllers.models.Person
+import com.healthapps.onlinedentalclinic.controllers.models.Service
 
 class PatientActivity : AppCompatActivity() {
     var clinic: Clinic = Clinic()
     var dentist: Person = Person()
+    var service: Service = Service()
     var textViewClinic: TextView? = null
     var textViewDentist: TextView? = null
-    var textViewSpecialty: TextView? = null
-    var button: Button? = null
+    var textViewService: TextView? = null
+    //var button: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +46,9 @@ class PatientActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onBackPressed() {
+    /*override fun onBackPressed() {
         super.onBackPressed()
         button!!.visibility = View.VISIBLE
 
-    }
+    }*/
 }

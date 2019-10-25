@@ -2,9 +2,7 @@ package com.healthapps.onlinedentalclinic.controllers.fragments
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction
 
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.activities.PatientActivity
-import kotlinx.android.synthetic.main.adapter_clinic.*
 import kotlinx.android.synthetic.main.fragment_create_appointment.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,8 +46,8 @@ class CreateAppointmentFragment : Fragment() {
             fragmentTransaction.commit()
 
             (activity as PatientActivity).textViewClinic = textViewClinic
-            (activity as PatientActivity).button = button_save_appointment
-            button_save_appointment.visibility = View.INVISIBLE
+            //(activity as PatientActivity).button = button_save_appointment
+            //button_save_appointment.visibility = View.INVISIBLE
         }
 
         textViewDentist.setOnClickListener {
@@ -62,9 +59,21 @@ class CreateAppointmentFragment : Fragment() {
             fragmentTransaction.commit()
 
             (activity as PatientActivity).textViewDentist = textViewDentist
-            (activity as PatientActivity).textViewSpecialty = textSpecialty
-            (activity as PatientActivity).button = button_save_appointment
-            button_save_appointment.visibility = View.INVISIBLE
+            //(activity as PatientActivity).button = button_save_appointment
+            //button_save_appointment.visibility = View.INVISIBLE
+        }
+
+        textViewService.setOnClickListener {
+            val serviceFragment = ServiceFragment()
+            val fragmentTransaction: FragmentTransaction = childFragmentManager!!.beginTransaction()
+            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+            fragmentTransaction.replace(R.id.fragment_create_appointments, serviceFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            (activity as PatientActivity).textViewService = textViewService
+            //(activity as PatientActivity).button = button_save_appointment
+            //button_save_appointment.visibility = View.INVISIBLE
         }
 
         textViewDate.setOnClickListener{

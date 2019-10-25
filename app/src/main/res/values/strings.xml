@@ -22,10 +22,14 @@
     <string name="textPasswordError">enter your password</string>
     <string name="textEmailError">enter your email</string>
     <string name="textInvalidEmail">Invalid email</string>
-    <string name="clinic_name">Name</string>
+    <string name="name">Name</string>
     <string name="clinic_address">Clinic address</string>
     <string name="attention_hours">Attention hour</string>
     <string name="save_appointment">Save</string>
     <string name="dentist_specialty">Specialty</string>
-    <string name="dentist_schedule">Schedule</string>
+    <string name="description">Description</string>
+    <string name="cost">Cost</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
