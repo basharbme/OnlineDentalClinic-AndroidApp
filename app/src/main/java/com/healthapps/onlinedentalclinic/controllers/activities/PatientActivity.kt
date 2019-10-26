@@ -1,9 +1,6 @@
 package com.healthapps.onlinedentalclinic.controllers.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +14,15 @@ import com.healthapps.onlinedentalclinic.controllers.models.Person
 import com.healthapps.onlinedentalclinic.controllers.models.Service
 
 class PatientActivity : AppCompatActivity() {
-    var clinic: Clinic = Clinic()
-    var dentist: Person = Person()
-    var service: Service = Service()
-    var textViewClinic: TextView? = null
-    var textViewDentist: TextView? = null
-    var textViewService: TextView? = null
-    //var button: Button? = null
+
+    companion object{
+        var clinic: Clinic = Clinic()
+        var dentist: Person = Person()
+        var service: Service = Service()
+        var textViewClinic: TextView? = null
+        var textViewDentist: TextView? = null
+        var textViewService: TextView? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +44,4 @@ class PatientActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-    /*override fun onBackPressed() {
-        super.onBackPressed()
-        button!!.visibility = View.VISIBLE
-
-    }*/
 }
