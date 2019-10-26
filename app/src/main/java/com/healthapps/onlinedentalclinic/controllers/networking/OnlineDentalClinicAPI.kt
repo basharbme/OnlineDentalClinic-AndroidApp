@@ -40,8 +40,8 @@ class OnlineDentalClinicAPI{
             get(dentalAppointmentsURL, responseHandler, responseError, token)
         }
 
-        fun getClincs(responseHandler: (ArrayList<Clinic>?) -> Unit,
-                      responseError: (ANError?) -> Unit, token: String ){
+        fun getClinics(responseHandler: (ArrayList<Clinic>?) -> Unit,
+                       responseError: (ANError?) -> Unit, token: String ){
             get(clinicsURL, responseHandler, responseError, token)
         }
 

@@ -1,6 +1,5 @@
 package com.healthapps.onlinedentalclinic.controllers.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -15,9 +14,11 @@ import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 
 class PatientActivity : AppCompatActivity() {
-    var clinic: Clinic = Clinic()
-    var textViewClinic: TextView? = null
-    var button: Button? = null
+    companion object{
+        var clinic: Clinic = Clinic()
+        var textViewClinic: TextView? = null
+        var button: Button? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
