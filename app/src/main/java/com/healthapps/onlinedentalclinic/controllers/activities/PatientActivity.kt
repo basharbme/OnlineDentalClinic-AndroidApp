@@ -16,12 +16,14 @@ import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 import com.healthapps.onlinedentalclinic.controllers.models.Person
 
 class PatientActivity : AppCompatActivity() {
-    var clinic: Clinic = Clinic()
-    var dentist: Person = Person()
-    var textViewClinic: TextView? = null
-    var textViewDentist: TextView? = null
-    var textViewSpecialty: TextView? = null
-    var button: Button? = null
+    companion object{
+        var clinic: Clinic = Clinic()
+        var dentist: Person = Person()
+        var textViewClinic: TextView? = null
+        var textViewDentist: TextView? = null
+        var textViewSpecialty: TextView? = null
+        var button: Button? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,5 @@ class PatientActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         button!!.visibility = View.VISIBLE
-
     }
 }
