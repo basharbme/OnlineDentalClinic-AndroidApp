@@ -2,15 +2,25 @@ package com.healthapps.onlinedentalclinic.controllers.fragments
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 
 import com.healthapps.onlinedentalclinic.R
+import com.healthapps.onlinedentalclinic.controllers.activities.ClinicActivity
+import com.healthapps.onlinedentalclinic.controllers.activities.DentistActivity
 import com.healthapps.onlinedentalclinic.controllers.activities.PatientActivity
+import com.healthapps.onlinedentalclinic.controllers.activities.ServiceActivity
+import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
+import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
+import kotlinx.android.synthetic.main.adapter_clinic.*
 import kotlinx.android.synthetic.main.fragment_create_appointment.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,42 +48,18 @@ class CreateAppointmentFragment : Fragment() {
         val day = calendar.get((Calendar.DAY_OF_MONTH))
 
         textViewClinic.setOnClickListener {
-            val clinicFragment = ClinicFragment()
-            val fragmentTransaction: FragmentTransaction = childFragmentManager!!.beginTransaction()
-            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,android.R.animator.fade_out)
-            fragmentTransaction.replace(R.id.fragment_create_appointments, clinicFragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-
-            (activity as PatientActivity).textViewClinic = textViewClinic
-            //(activity as PatientActivity).button = button_save_appointment
-            //button_save_appointment.visibility = View.INVISIBLE
+            PatientActivity.textViewClinic = textViewClinic
+            activity!!.startActivity(Intent(activity, ClinicActivity::class.java))
         }
 
         textViewDentist.setOnClickListener {
-            val dentistFragment = DentistFragment()
-            val fragmentTransaction: FragmentTransaction = childFragmentManager!!.beginTransaction()
-            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,android.R.animator.fade_out)
-            fragmentTransaction.replace(R.id.fragment_create_appointments, dentistFragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-
-            (activity as PatientActivity).textViewDentist = textViewDentist
-            //(activity as PatientActivity).button = button_save_appointment
-            //button_save_appointment.visibility = View.INVISIBLE
+            PatientActivity.textViewDentist = textViewDentist
+            activity!!.startActivity(Intent(activity, DentistActivity::class.java))
         }
 
         textViewService.setOnClickListener {
-            val serviceFragment = ServiceFragment()
-            val fragmentTransaction: FragmentTransaction = childFragmentManager!!.beginTransaction()
-            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-            fragmentTransaction.replace(R.id.fragment_create_appointments, serviceFragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-
-            (activity as PatientActivity).textViewService = textViewService
-            //(activity as PatientActivity).button = button_save_appointment
-            //button_save_appointment.visibility = View.INVISIBLE
+            PatientActivity.textViewService = textViewService
+            activity!!.startActivity(Intent(activity, ServiceActivity::class.java))
         }
 
         textViewDate.setOnClickListener{
@@ -93,6 +79,36 @@ class CreateAppointmentFragment : Fragment() {
             }
             TimePickerDialog(view.context, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE), false).show()
+        }
+
+        button_save_appointment.setOnClickListener {
+            val dentalAppointment = DentalAppointment()
+
+            dentalAppointment.patients_id = PatientActivity.patient
+            dentalAppointment.dentists_id = PatientActivity.dentist
+            dentalAppointment.clinics_id = PatientActivity.clinic
+            dentalAppointment.services_id = PatientActivity.service
+            dentalAppointment.date = textViewDate.text.toString()
+            dentalAppointment.hour = textViewHour.text.toString()
+
+            val appointmentFragment = AppointmentFragment()
+            val transactionFragment: FragmentTransaction = fragmentManager!!.beginTransaction()
+
+            transactionFragment.replace(R.id.nav_host_fragment, appointmentFragment)
+            transactionFragment.commit()
+            fragmentManager!!.popBackStack()
+
+            OnlineDentalClinicAPI.saveAppoitments(
+                dentalAppointments = dentalAppointment,
+                responseHandler = {
+                    Log.d("Save appointment", it.toString())
+                },
+                responseError = {
+                    Log.d("Error", "Error $it.errorCode: $it.errorBody $it.localizedMessage")
+                },
+                token = getString(R.string.token)
+            )
+            Log.d("Dental appointments", dentalAppointment.toString())
         }
     }
 }

@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="198dp"
     android:orientation="vertical">
@@ -64,7 +65,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textName"
+                android:id="@+id/textService"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
@@ -89,7 +90,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/textName" />
+                app:layout_constraintTop_toBottomOf="@+id/textService" />
 
             <TextView
                 android:id="@+id/textDescription"
@@ -116,6 +117,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginStart="113dp"
+                android:layout_marginTop="64dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="393dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="113dp"
+                android:layout_marginTop="128dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -59,6 +59,12 @@ class OnlineDentalClinicAPI{
             get(servicesURL, responseHandler, responseError, token)
         }
 
+        //Save-Appointments
+        fun saveAppoitments(dentalAppointments: DentalAppointment, responseHandler: (JSONObject?) -> Unit,
+                            responseError: (ANError?) -> Unit, token: String){
+            post(dentalAppointments.convertToJson(), dentalAppointmentsURL,responseHandler, responseError, token)
+        }
+
         //Post-All
         private inline fun post(jsonObj: JSONObject, url: String,
                                 crossinline responseHandler: (JSONObject?) -> Unit,

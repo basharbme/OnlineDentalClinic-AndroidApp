@@ -43,11 +43,11 @@ class AppointmentFragment : Fragment() {
                 person.email = "healthappscompany@gmail.com"
                 person.password = "sergio1espinal"
 
-                val datalist: ArrayList<DentalAppointment> = it as ArrayList<DentalAppointment>
-                datalist.filter { user -> user.patients_id.email == person.email &&
+                val dataList: ArrayList<DentalAppointment> = it as ArrayList<DentalAppointment>
+                dataList.filter { user -> user.patients_id.email == person.email &&
                         user.patients_id.password == person.password }
                 //pass the values to RvAdapter
-                val appAdapter = AppointmentAdapter(datalist)
+                val appAdapter = AppointmentAdapter(dataList)
                //set the recyclerView to the adapter
                 recyclerView.adapter = appAdapter
             },

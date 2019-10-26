@@ -4,12 +4,12 @@ import org.json.JSONObject
 import java.io.Serializable
 
 data class Clinic(
-    val id: String,
-    val name: String,
-    val description: String,
-    val address: String,
-    val attention_hours: String,
-    val specialties: String
+    var id: String,
+    var name: String,
+    var description: String,
+    var address: String,
+    var attention_hours: String,
+    var specialties: String
 ): Serializable{
     constructor(): this(
         "",

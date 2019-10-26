@@ -1,9 +1,6 @@
 package com.healthapps.onlinedentalclinic.controllers.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,19 +8,25 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.gson.Gson
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 import com.healthapps.onlinedentalclinic.controllers.models.Person
 import com.healthapps.onlinedentalclinic.controllers.models.Service
 
+
+
 class PatientActivity : AppCompatActivity() {
-    var clinic: Clinic = Clinic()
-    var dentist: Person = Person()
-    var service: Service = Service()
-    var textViewClinic: TextView? = null
-    var textViewDentist: TextView? = null
-    var textViewService: TextView? = null
-    //var button: Button? = null
+
+    companion object{
+        var clinic: Clinic = Clinic()
+        var dentist: Person = Person()
+        var service: Service = Service()
+        var patient: Person = Person()
+        var textViewClinic: TextView? = null
+        var textViewDentist: TextView? = null
+        var textViewService: TextView? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,14 @@ class PatientActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        if(intent.hasExtra("user")){
+            //val jsonPatient = JSONObject(intent.getSerializableExtra("user").toString())
+            //Log.d("josnPatient", jsonPatient.toString())
+            val gson = Gson()
+
+            patient = gson.fromJson(intent.getSerializableExtra("user")?.toString(), Person::class.java)
+        }
     }
 
     /*override fun onBackPressed() {

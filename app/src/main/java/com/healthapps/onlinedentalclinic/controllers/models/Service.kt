@@ -4,10 +4,10 @@ import org.json.JSONObject
 import java.io.Serializable
 
 data class Service(
-    val id: String,
-    val name: String,
-    val description: String,
-    val cost: String
+    var id: String,
+    var name: String,
+    var description: String,
+    var cost: String
 ): Serializable{
     constructor(): this(
         "",

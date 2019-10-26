@@ -4,13 +4,13 @@ import org.json.JSONObject
 import java.io.Serializable
 
 data class DentalAppointment (
-    val id: String,
-    val patients_id: Person,
-    val dentists_id: Person,
-    val clinics_id: Clinic,
-    val services_id: Service,
-    val date: String,
-    val hour: String
+    var id: String,
+    var patients_id: Person,
+    var dentists_id: Person,
+    var clinics_id: Clinic,
+    var services_id: Service,
+    var date: String,
+    var hour: String
     ): Serializable {
     constructor() : this (
         "",

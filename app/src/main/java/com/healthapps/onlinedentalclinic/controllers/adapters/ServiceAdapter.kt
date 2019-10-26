@@ -44,7 +44,7 @@ class ServiceAdapter(private val servicesList: ArrayList<Service>, private val l
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val name: TextView = itemView.findViewById(R.id.textName)
+        val name: TextView = itemView.findViewById(R.id.textService)
         val description: TextView = itemView.findViewById(R.id.textDescription)
         val cost: TextView = itemView.findViewById(R.id.textCost)
         val cardViewService: CardView = itemView.findViewById(R.id.card_services)

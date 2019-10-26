@@ -64,8 +64,12 @@ class LoginActivity : AppCompatActivity() {
                         textGeneralError.text = ""
 
                         val intent = Intent(this, PatientActivity::class.java)
-                        intent.putExtra("user", it?.toString())
-                        startActivity(intent)
+
+                        it?.apply {
+                            finish()
+                            intent.putExtra("user", it?.toString())
+                            startActivity(intent)
+                        }
                     },
                     responseError = {
                         val str: String = it.toString()
