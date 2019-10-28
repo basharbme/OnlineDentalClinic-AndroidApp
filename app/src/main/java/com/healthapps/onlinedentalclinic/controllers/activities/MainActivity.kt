@@ -10,13 +10,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.gson.Gson
 import com.healthapps.onlinedentalclinic.R
+import com.healthapps.onlinedentalclinic.controllers.fragments.AppointmentFragment
+import com.healthapps.onlinedentalclinic.controllers.fragments.CreateAppointmentFragment
 import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 import com.healthapps.onlinedentalclinic.controllers.models.Person
 import com.healthapps.onlinedentalclinic.controllers.models.Service
 
 
 
-class PatientActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     companion object{
         var clinic: Clinic = Clinic()

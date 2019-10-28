@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
         try {
             this.supportActionBar!!.hide()
             } catch (e: NullPointerException) {
+            Log.d("Error", e.toString())
         }
 
         setContentView(R.layout.activity_login)
@@ -63,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.d("User accepted", "$it")
                         textGeneralError.text = ""
 
-                        val intent = Intent(this, PatientActivity::class.java)
+                        val intent = Intent(this, MainActivity::class.java)
 
                         it?.apply {
                             finish()

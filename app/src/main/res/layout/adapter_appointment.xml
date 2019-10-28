@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_appointments"
         android:layout_width="match_parent"
         android:layout_height="198dp"
         android:layout_marginLeft="@dimen/mtrl_card_spacing"

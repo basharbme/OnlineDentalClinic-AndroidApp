@@ -4,30 +4,37 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.activities.ClinicActivity
 import com.healthapps.onlinedentalclinic.controllers.activities.DentistActivity
-import com.healthapps.onlinedentalclinic.controllers.activities.PatientActivity
+import com.healthapps.onlinedentalclinic.controllers.activities.MainActivity
 import com.healthapps.onlinedentalclinic.controllers.activities.ServiceActivity
 import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
 import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
-import kotlinx.android.synthetic.main.adapter_clinic.*
 import kotlinx.android.synthetic.main.fragment_create_appointment.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CreateAppointmentFragment : Fragment() {
+class CreateAppointmentFragment(private val listener: ClickListener) : Fragment() {
+
     private var root: View? = null
+
+    open interface ClickListener {
+        fun onClick(save: Boolean)
+
+    }
+
+    companion object {
+        var clickListener: ClickListener? = null
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,17 +55,17 @@ class CreateAppointmentFragment : Fragment() {
         val day = calendar.get((Calendar.DAY_OF_MONTH))
 
         textViewClinic.setOnClickListener {
-            PatientActivity.textViewClinic = textViewClinic
+            MainActivity.textViewClinic = textViewClinic
             activity!!.startActivity(Intent(activity, ClinicActivity::class.java))
         }
 
         textViewDentist.setOnClickListener {
-            PatientActivity.textViewDentist = textViewDentist
+            MainActivity.textViewDentist = textViewDentist
             activity!!.startActivity(Intent(activity, DentistActivity::class.java))
         }
 
         textViewService.setOnClickListener {
-            PatientActivity.textViewService = textViewService
+            MainActivity.textViewService = textViewService
             activity!!.startActivity(Intent(activity, ServiceActivity::class.java))
         }
 
@@ -83,25 +90,30 @@ class CreateAppointmentFragment : Fragment() {
 
         button_save_appointment.setOnClickListener {
             val dentalAppointment = DentalAppointment()
+            clickListener = listener
 
-            dentalAppointment.patients_id = PatientActivity.patient
-            dentalAppointment.dentists_id = PatientActivity.dentist
-            dentalAppointment.clinics_id = PatientActivity.clinic
-            dentalAppointment.services_id = PatientActivity.service
+            dentalAppointment.patients_id = MainActivity.patient
+            dentalAppointment.dentists_id = MainActivity.dentist
+            dentalAppointment.clinics_id = MainActivity.clinic
+            dentalAppointment.services_id = MainActivity.service
             dentalAppointment.date = textViewDate.text.toString()
             dentalAppointment.hour = textViewHour.text.toString()
 
             val appointmentFragment = AppointmentFragment()
             val transactionFragment: FragmentTransaction = fragmentManager!!.beginTransaction()
 
-            transactionFragment.replace(R.id.nav_host_fragment, appointmentFragment)
+            //transactionFragment.replace(R.id.nav_host_fragment, appointmentFragment)
+            transactionFragment.remove(this)
             transactionFragment.commit()
             fragmentManager!!.popBackStack()
 
-            OnlineDentalClinicAPI.saveAppoitments(
+            OnlineDentalClinicAPI.saveAppointments(
                 dentalAppointments = dentalAppointment,
                 responseHandler = {
                     Log.d("Save appointment", it.toString())
+                    if (clickListener != null) {
+                        clickListener?.onClick(true)
+                    }
                 },
                 responseError = {
                     Log.d("Error", "Error $it.errorCode: $it.errorBody $it.localizedMessage")

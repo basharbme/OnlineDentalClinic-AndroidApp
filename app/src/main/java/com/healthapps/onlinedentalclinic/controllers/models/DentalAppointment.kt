@@ -4,7 +4,7 @@ import org.json.JSONObject
 import java.io.Serializable
 
 data class DentalAppointment (
-    var id: String,
+    var _id: String,
     var patients_id: Person,
     var dentists_id: Person,
     var clinics_id: Clinic,
@@ -28,7 +28,7 @@ data class DentalAppointment (
         val jsonClinics = clinics_id.convertToJson()
         val jsonService = services_id.convertToJson()
 
-        jsonDentalAppointment.put("id", id)
+        jsonDentalAppointment.put("_id", _id)
         jsonDentalAppointment.put("patients_id", jsonPatients)
         jsonDentalAppointment.put("dentists_id", jsonDentist)
         jsonDentalAppointment.put("clinics_id", jsonClinics)

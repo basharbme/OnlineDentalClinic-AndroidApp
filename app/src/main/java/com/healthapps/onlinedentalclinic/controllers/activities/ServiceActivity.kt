@@ -3,15 +3,12 @@ package com.healthapps.onlinedentalclinic.controllers.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.adapters.ServiceAdapter
 import com.healthapps.onlinedentalclinic.controllers.models.Service
 import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
-import kotlinx.android.synthetic.main.fragment_create_appointment.*
 
 class ServiceActivity : AppCompatActivity() {
 
@@ -28,8 +25,8 @@ class ServiceActivity : AppCompatActivity() {
                 val adapter = ServiceAdapter(dataList, object : ServiceAdapter.ClickListener{
                     override fun onClick(position: Int) {
                         val serviceSelect = dataList[position]
-                        PatientActivity.service = serviceSelect
-                        PatientActivity.textViewService!!.text = serviceSelect.name
+                        MainActivity.service = serviceSelect
+                        MainActivity.textViewService!!.text = serviceSelect.name
                         finish()
                     }
                 })

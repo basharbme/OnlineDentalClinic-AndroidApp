@@ -18,7 +18,7 @@ data class Service(
     fun convertToJson(): JSONObject{
         val jsonService = JSONObject()
 
-        jsonService.put("id", id)
+        jsonService.put("_id", id)
         jsonService.put("name", name)
         jsonService.put("description", description)
         jsonService.put("cost", cost)

@@ -1,12 +1,10 @@
 package com.healthapps.onlinedentalclinic.controllers.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,12 +27,12 @@ class AppointmentFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_appointments, container, false)
     }
 
-    @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.RV_dental_appointments)
-        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
+
+        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
 
         OnlineDentalClinicAPI.getDentalAppointments(
             responseHandler = {
@@ -44,10 +42,22 @@ class AppointmentFragment : Fragment() {
                 person.password = "sergio1espinal"
 
                 val dataList: ArrayList<DentalAppointment> = it as ArrayList<DentalAppointment>
+
                 dataList.filter { user -> user.patients_id.email == person.email &&
                         user.patients_id.password == person.password }
                 //pass the values to RvAdapter
-                val appAdapter = AppointmentAdapter(dataList)
+                val appAdapter = AppointmentAdapter(dataList, object : AppointmentAdapter.ClickListener {
+                    override fun onClick(position: Int) {
+                        //appointmentSelected = dataList[position]
+                        Log.d("Clicked from adapter", "Here fragment")
+                        dataList.removeAt(position)
+                        recyclerView.adapter!!.notifyItemRemoved(position)
+                        recyclerView.adapter!!.notifyItemRangeChanged(position, dataList.size)
+                        recyclerView.adapter!!.notifyDataSetChanged()
+                        //recyclerView.adapter!!.notifyItemChanged(position)
+                    }
+                },
+                    token = getString(R.string.token))
                //set the recyclerView to the adapter
                 recyclerView.adapter = appAdapter
             },
@@ -58,7 +68,13 @@ class AppointmentFragment : Fragment() {
         )
 
         floating_action_button.setOnClickListener {
-            val createAppointments = CreateAppointmentFragment()
+            val createAppointments = CreateAppointmentFragment(object : CreateAppointmentFragment.ClickListener {
+                override fun onClick(save: Boolean) {
+                    if(save){
+                        recyclerView.adapter!!.notifyDataSetChanged()
+                    }
+                }
+            })
             val fragmentTransaction: FragmentTransaction = getFragmentManager()!!.beginTransaction()
 
             fragmentTransaction.replace(R.id.nav_host_fragment, createAppointments)

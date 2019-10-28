@@ -8,6 +8,7 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.interfaces.ParsedRequestListener
+import com.androidnetworking.interfaces.StringRequestListener
 import com.healthapps.onlinedentalclinic.controllers.models.Clinic
 import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
 import com.healthapps.onlinedentalclinic.controllers.models.Service
@@ -60,9 +61,16 @@ class OnlineDentalClinicAPI{
         }
 
         //Save-Appointments
-        fun saveAppoitments(dentalAppointments: DentalAppointment, responseHandler: (JSONObject?) -> Unit,
-                            responseError: (ANError?) -> Unit, token: String){
+        fun saveAppointments(dentalAppointments: DentalAppointment, responseHandler: (JSONObject?) -> Unit,
+                             responseError: (ANError?) -> Unit, token: String){
             post(dentalAppointments.convertToJson(), dentalAppointmentsURL,responseHandler, responseError, token)
+        }
+
+        fun cancelAppointments(id: String, responseHandler: (String?) -> Unit,
+                               responseError: (ANError?) -> Unit, token: String){
+            val urlDelete = "$dentalAppointmentsURL/$id"
+
+            delete(urlDelete, responseHandler, responseError, token)
         }
 
         //Post-All
@@ -102,6 +110,26 @@ class OnlineDentalClinicAPI{
                         override fun onResponse(response: ArrayList<T>) {
                             responseHandler(response)
                             Log.d("clinics", response.toString())
+                        }
+
+                        override fun onError(anError: ANError?) {
+                            responseError(anError)
+                        }
+                    }
+                )
+        }
+
+        private inline fun delete(url: String, crossinline responseHandler: (String?) -> Unit,
+                                              crossinline responseError: (ANError?) -> Unit, token: String){
+            AndroidNetworking.delete(url)
+                .addHeaders("Authorization", "Bearer $token")
+                .setTag(TAG)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsString(
+                    object : StringRequestListener {
+                        override fun onResponse(response: String?) {
+                            responseHandler(response)
                         }
 
                         override fun onError(anError: ANError?) {

@@ -3,8 +3,6 @@ package com.healthapps.onlinedentalclinic.controllers.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
@@ -27,8 +25,8 @@ class DentistActivity : AppCompatActivity() {
                 val adapter = DentistAdapter(dataList, object : DentistAdapter.ClickLister{
                     override fun onClick(position: Int) {
                         val dentistSelect = dataList[position]
-                        PatientActivity.dentist = dentistSelect
-                        PatientActivity.textViewDentist!!.text = dentistSelect.fullname
+                        MainActivity.dentist = dentistSelect
+                        MainActivity.textViewDentist!!.text = dentistSelect.fullname
                         finish()
                     }
                 })

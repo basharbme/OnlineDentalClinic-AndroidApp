@@ -16,7 +16,7 @@ data class Role(
     fun convertToJson(): JSONObject{
         val jsonRole = JSONObject()
 
-        jsonRole.put("id", id)
+        jsonRole.put("_id", id)
         jsonRole.put("name", name)
         jsonRole.put("description", description)
 

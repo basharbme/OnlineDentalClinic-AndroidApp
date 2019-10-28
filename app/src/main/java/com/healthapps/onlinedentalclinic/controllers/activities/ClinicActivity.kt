@@ -26,8 +26,8 @@ class ClinicActivity : AppCompatActivity() {
                 val adapter = ClinicAdapter(dataList, object : ClinicAdapter.ClickListener{
                     override fun onClick(position: Int) {
                         val clinicSelected = dataList[position]
-                        PatientActivity.clinic = clinicSelected
-                        PatientActivity.textViewClinic!!.text = clinicSelected.name
+                        MainActivity.clinic = clinicSelected
+                        MainActivity.textViewClinic!!.text = clinicSelected.name
                         //Toast.makeText(this@ClinicActivity, "clicked on " + clinicSelected.name, Toast.LENGTH_SHORT).show()
                         finish()
                     }

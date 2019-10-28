@@ -22,7 +22,7 @@ data class Clinic(
     fun convertToJson(): JSONObject{
         val jsonClinics = JSONObject()
 
-        jsonClinics.put("id", id)
+        jsonClinics.put("_id", id)
         jsonClinics.put("name", name)
         jsonClinics.put("description", description)
         jsonClinics.put("address", address)
