@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
-import com.healthapps.onlinedentalclinic.controllers.models.Clinic
+import com.healthapps.onlinedentalclinic.models.Clinic
 
 
 class ClinicAdapter(private val clinicList: ArrayList<Clinic>, private val listener: ClickListener) :

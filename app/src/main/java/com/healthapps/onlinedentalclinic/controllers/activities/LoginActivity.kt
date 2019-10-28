@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import com.healthapps.onlinedentalclinic.R
-import com.healthapps.onlinedentalclinic.controllers.models.Person
-import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
+import com.healthapps.onlinedentalclinic.models.Person
+import com.healthapps.onlinedentalclinic.networking.OnlineDentalClinicAPI
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -15,7 +15,8 @@ class LoginActivity : AppCompatActivity() {
     private var password: String = ""
     private var validEmail: Boolean = false
     private var validPassword : Boolean = false
-    private var person: Person = Person()
+    private var person: Person =
+        Person()
     private val emailPattern = Patterns.EMAIL_ADDRESS
 
     override fun onCreate(savedInstanceState: Bundle?) {

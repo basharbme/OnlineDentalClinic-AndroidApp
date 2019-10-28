@@ -1,4 +1,4 @@
-package com.healthapps.onlinedentalclinic.controllers.models
+package com.healthapps.onlinedentalclinic.models
 
 import org.json.JSONObject
 import java.io.Serializable

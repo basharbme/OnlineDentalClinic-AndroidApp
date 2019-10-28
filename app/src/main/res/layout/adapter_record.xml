@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="195dp"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_records"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="@dimen/mtrl_card_spacing"
+        android:layout_marginTop="@dimen/mtrl_card_spacing"
+        android:layout_marginRight="@dimen/mtrl_card_spacing"
+        android:minHeight="200dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/nAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="147dp"
+                android:text="Age"
+                android:textColor="#424242"
+                android:textSize="8sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/nPatient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:text="Patient"
+                android:textColor="#424242"
+                android:textSize="8sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtAge"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="#212121"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nAge" />
+
+            <TextView
+                android:id="@+id/nReasonConsultation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:text="Reason consultation"
+                android:textColor="#424242"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textPatient"
+                app:layout_constraintVertical_bias="0.060000002" />
+
+            <TextView
+                android:id="@+id/txtReasonConsultation"
+                android:layout_width="130dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#212121"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nReasonConsultation" />
+
+            <TextView
+                android:id="@+id/nSignsSymptoms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="78dp"
+                android:text="Signs Symptoms"
+                android:textColor="#424242"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.835"
+                app:layout_constraintStart_toEndOf="@+id/nReasonConsultation"
+                app:layout_constraintTop_toBottomOf="@+id/txtAge"
+                app:layout_constraintVertical_bias="0.060000002" />
+
+            <TextView
+                android:id="@+id/txtSignsSymptoms"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="#212121"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/txtReasonConsultation"
+                app:layout_constraintTop_toBottomOf="@+id/nSignsSymptoms" />
+
+            <TextView
+                android:id="@+id/textPatient"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:textAllCaps="false"
+                android:textColor="#212121"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nPatient" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/view_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/view"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSignsSymptoms"
+                app:layout_constraintVertical_bias="0.7" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edit_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="70dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtReasonConsultation"
+                app:layout_constraintVertical_bias="0.7" />
+
+            <View
+                android:id="@+id/dividerHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="70dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

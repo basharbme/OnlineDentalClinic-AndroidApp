@@ -1,9 +1,9 @@
-package com.healthapps.onlinedentalclinic.controllers.models
+package com.healthapps.onlinedentalclinic.models
 
 import org.json.JSONObject
 import java.io.Serializable
 
-data class DentalAppointment (
+data class DentalAppointment(
     var _id: String,
     var patients_id: Person,
     var dentists_id: Person,
@@ -11,8 +11,8 @@ data class DentalAppointment (
     var services_id: Service,
     var date: String,
     var hour: String
-    ): Serializable {
-    constructor() : this (
+) : Serializable {
+    constructor() : this(
         "",
         Person(),
         Person(),
@@ -21,7 +21,8 @@ data class DentalAppointment (
         "",
         ""
     )
-    fun convertToJson(): JSONObject{
+
+    fun convertToJson(): JSONObject {
         val jsonDentalAppointment = JSONObject()
         val jsonPatients = patients_id.convertToJson()
         val jsonDentist = dentists_id.convertToJson()

@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 
 import com.healthapps.onlinedentalclinic.R
 
-class HelpFragment : Fragment() {
+class OdontogramFragment : Fragment() {
 
     private lateinit var helpViewModel: HelpViewModel
 
@@ -22,7 +22,7 @@ class HelpFragment : Fragment() {
     ): View? {
         helpViewModel =
             ViewModelProviders.of(this).get(HelpViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_help, container, false)
+        val root = inflater.inflate(R.layout.fragment_odontograms, container, false)
         val textView: TextView = root.findViewById(R.id.text_help)
         helpViewModel.text.observe(this, Observer {
             textView.text = it

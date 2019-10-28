@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CreateAppointmentFragment(private val listener: ClickListener) : Fragment() {
+class CreateRecordFragment(private val listener: ClickListener) : Fragment() {
 
     private var root: View? = null
 
@@ -99,10 +99,8 @@ class CreateAppointmentFragment(private val listener: ClickListener) : Fragment(
             dentalAppointment.date = textViewDate.text.toString()
             dentalAppointment.hour = textViewHour.text.toString()
 
-            val appointmentFragment = AppointmentFragment()
             val transactionFragment: FragmentTransaction = fragmentManager!!.beginTransaction()
 
-            //transactionFragment.replace(R.id.nav_host_fragment, appointmentFragment)
             transactionFragment.remove(this)
             transactionFragment.commit()
             fragmentManager!!.popBackStack()

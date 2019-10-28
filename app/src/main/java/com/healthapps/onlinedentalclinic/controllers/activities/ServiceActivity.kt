@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.adapters.ServiceAdapter
-import com.healthapps.onlinedentalclinic.controllers.models.Service
-import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
+import com.healthapps.onlinedentalclinic.models.Service
+import com.healthapps.onlinedentalclinic.networking.OnlineDentalClinicAPI
 
 class ServiceActivity : AppCompatActivity() {
 

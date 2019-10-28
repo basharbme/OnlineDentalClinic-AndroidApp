@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Online Dental Clinic</string>
     <string name="title_appointments">Appointments</string>
-    <string name="title_dental_info">Dental Information</string>
+    <string name="title_history">History</string>
     <string name="title_sales">Sales</string>
-    <string name="title_help">Help</string>
+    <string name="title_odontograms">Help</string>
     <string name="title_account">Account</string>
     <string name="register_me">Register me</string>
     <string name="email">email</string>
@@ -11,6 +11,7 @@
     <string name="password">password</string>
     <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
+    <string name="view">View</string>
     <string name="textView_clinic">Clinic</string>
     <string name="textView_dentist">Dentist</string>
     <string name="textView_service">Service</string>
@@ -29,6 +30,10 @@
     <string name="dentist_specialty">Specialty</string>
     <string name="description">Description</string>
     <string name="cost">Cost</string>
+    <string name="patient">Patient</string>
+    <string name="age">Age</string>
+    <string name="reason_consultation">reason_consultation</string>
+    <string name="signs_symptoms">signs_symptoms</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

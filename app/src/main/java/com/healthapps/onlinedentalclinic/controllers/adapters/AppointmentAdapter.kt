@@ -12,8 +12,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.healthapps.onlinedentalclinic.R
-import com.healthapps.onlinedentalclinic.controllers.models.DentalAppointment
-import com.healthapps.onlinedentalclinic.controllers.networking.OnlineDentalClinicAPI
+import com.healthapps.onlinedentalclinic.models.DentalAppointment
+import com.healthapps.onlinedentalclinic.networking.OnlineDentalClinicAPI
 
 class AppointmentAdapter(private val dentalAppointmentsList: ArrayList<DentalAppointment>,
                          private val listener: ClickListener, private val token: String) :

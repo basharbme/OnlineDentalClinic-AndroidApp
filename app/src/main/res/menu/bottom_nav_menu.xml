@@ -7,19 +7,19 @@
         android:title="@string/title_appointments" />
 
     <item
-        android:id="@+id/navigation_dental_info"
+        android:id="@+id/navigation_records"
         android:icon="@drawable/ic_assignment_black_24dp"
-        android:title="@string/title_dental_info" />
+        android:title="@string/title_history" />
+
+    <item
+        android:id="@+id/navigation_odontograms"
+        android:icon="@drawable/ic_sentiment_neutral_black_24dp"
+        android:title="@string/title_odontograms" />
 
     <item
         android:id="@+id/navigation_sales"
         android:icon="@drawable/ic_credit_card_black_24dp"
         android:title="@string/title_sales" />
-
-    <item
-        android:id="@+id/navigation_help"
-        android:icon="@drawable/ic_live_help_black_24dp"
-        android:title="@string/title_help" />
 
     <item
         android:id="@+id/navigation_account"

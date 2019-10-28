@@ -10,43 +10,42 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
-import com.healthapps.onlinedentalclinic.controllers.adapters.AppointmentAdapter
-import com.healthapps.onlinedentalclinic.models.DentalAppointment
+import com.healthapps.onlinedentalclinic.controllers.adapters.HistoryAdapter
+import com.healthapps.onlinedentalclinic.models.DentalRecords
 import com.healthapps.onlinedentalclinic.models.Person
 import com.healthapps.onlinedentalclinic.networking.OnlineDentalClinicAPI
-import kotlinx.android.synthetic.main.fragment_appointments.*
+import kotlinx.android.synthetic.main.fragment_records.*
 
+class HistoryFragment : Fragment() {
 
-
-class AppointmentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_appointments, container, false)
+        return inflater.inflate(R.layout.fragment_records, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.RV_dental_appointments)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.RV_dental_records)
 
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
 
-        OnlineDentalClinicAPI.getDentalAppointments(
+        OnlineDentalClinicAPI.getDentalRecords(
             responseHandler = {
                 //filter
                 val person = Person()
                 person.email = "healthappscompany@gmail.com"
                 person.password = "sergio1espinal"
 
-                val dataList: ArrayList<DentalAppointment> = it as ArrayList<DentalAppointment>
+                val dataList: ArrayList<DentalRecords> = it as ArrayList<DentalRecords>
 
                 dataList.filter { user -> user.patients_id.email == person.email &&
                         user.patients_id.password == person.password }
                 //pass the values to RvAdapter
-                val appAdapter = AppointmentAdapter(dataList, object : AppointmentAdapter.ClickListener {
+                val appAdapter = HistoryAdapter(dataList, object : HistoryAdapter.ClickListener {
                     override fun onClick(position: Int) {
                         //appointmentSelected = dataList[position]
                         Log.d("Clicked from adapter", "Here fragment")
@@ -56,9 +55,8 @@ class AppointmentFragment : Fragment() {
                         recyclerView.adapter!!.notifyDataSetChanged()
                         //recyclerView.adapter!!.notifyItemChanged(position)
                     }
-                },
-                    token = getString(R.string.token))
-               //set the recyclerView to the adapter
+                })
+                //set the recyclerView to the adapter
                 recyclerView.adapter = appAdapter
             },
             responseError = {
@@ -67,7 +65,7 @@ class AppointmentFragment : Fragment() {
             token = getString(R.string.token)
         )
 
-        floating_action_button.setOnClickListener {
+        record_floating_action_button.setOnClickListener {
             val createAppointments = CreateAppointmentFragment(object : CreateAppointmentFragment.ClickListener {
                 override fun onClick(save: Boolean) {
                     if(save){

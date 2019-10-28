@@ -10,21 +10,23 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.gson.Gson
 import com.healthapps.onlinedentalclinic.R
-import com.healthapps.onlinedentalclinic.controllers.fragments.AppointmentFragment
-import com.healthapps.onlinedentalclinic.controllers.fragments.CreateAppointmentFragment
-import com.healthapps.onlinedentalclinic.controllers.models.Clinic
-import com.healthapps.onlinedentalclinic.controllers.models.Person
-import com.healthapps.onlinedentalclinic.controllers.models.Service
+import com.healthapps.onlinedentalclinic.models.Clinic
+import com.healthapps.onlinedentalclinic.models.Person
+import com.healthapps.onlinedentalclinic.models.Service
 
 
 
 class MainActivity : AppCompatActivity() {
 
     companion object{
-        var clinic: Clinic = Clinic()
-        var dentist: Person = Person()
-        var service: Service = Service()
-        var patient: Person = Person()
+        var clinic: Clinic =
+            Clinic()
+        var dentist: Person =
+            Person()
+        var service: Service =
+            Service()
+        var patient: Person =
+            Person()
         var textViewClinic: TextView? = null
         var textViewDentist: TextView? = null
         var textViewService: TextView? = null
@@ -41,9 +43,9 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_appointments,
-                R.id.navigation_dental_info,
+                R.id.navigation_records,
                 R.id.navigation_sales,
-                R.id.navigation_help,
+                R.id.navigation_odontograms,
                 R.id.navigation_account
             )
         )
