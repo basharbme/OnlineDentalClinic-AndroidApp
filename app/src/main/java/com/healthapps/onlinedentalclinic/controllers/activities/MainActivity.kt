@@ -21,20 +21,20 @@ class MainActivity : AppCompatActivity() {
     companion object{
         var clinic: Clinic =
             Clinic()
-        var dentist: Person =
+        var person: Person =
             Person()
         var service: Service =
             Service()
-        var patient: Person =
+        var currentUser: Person =
             Person()
         var textViewClinic: TextView? = null
-        var textViewDentist: TextView? = null
+        var textViewPerson: TextView? = null
         var textViewService: TextView? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_patient)
+        setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             //Log.d("josnPatient", jsonPatient.toString())
             val gson = Gson()
 
-            patient = gson.fromJson(intent.getSerializableExtra("user")?.toString(), Person::class.java)
+            currentUser = gson.fromJson(intent.getSerializableExtra("user")?.toString(), Person::class.java)
         }
     }
 

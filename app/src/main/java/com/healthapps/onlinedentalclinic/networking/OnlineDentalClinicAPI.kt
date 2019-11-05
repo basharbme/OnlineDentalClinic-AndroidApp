@@ -42,6 +42,7 @@ class OnlineDentalClinicAPI {
             )
         }
 
+        //Get-All
         fun getDentalAppointments(
             responseHandler: (ArrayList<DentalAppointment>?) -> Unit,
             responseError: (ANError?) -> Unit, token: String
@@ -54,6 +55,7 @@ class OnlineDentalClinicAPI {
             )
         }
 
+        //Get-All
         fun getDentalRecords(
             responseHandler: (ArrayList<DentalRecords>?) -> Unit,
             responseError: (ANError?) -> Unit, token: String
@@ -80,7 +82,7 @@ class OnlineDentalClinicAPI {
         }
 
         //Get-All
-        fun getDentists(
+        fun getPeople(
             responseHandler: (ArrayList<Person>?) -> Unit,
             responseError: (ANError?) -> Unit, token: String
         ) {
@@ -113,6 +115,19 @@ class OnlineDentalClinicAPI {
             post(
                 dentalAppointments.convertToJson(),
                 dentalAppointmentsURL,
+                responseHandler,
+                responseError,
+                token
+            )
+        }
+
+        fun saveDentalRecords(
+            dentalRecords: DentalRecords, responseHandler: (JSONObject?) -> Unit,
+            responseError: (ANError?) -> Unit, token: String
+        ) {
+            post(
+                dentalRecords.convertToJson(),
+                dentalRecordsURL,
                 responseHandler,
                 responseError,
                 token

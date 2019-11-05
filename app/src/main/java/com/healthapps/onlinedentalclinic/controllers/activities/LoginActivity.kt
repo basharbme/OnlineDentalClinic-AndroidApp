@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
     private var email: String = ""
     private var password: String = ""
     private var validEmail: Boolean = false
-    private var validPassword : Boolean = false
+    private var validPassword: Boolean = false
     private var person: Person =
         Person()
     private val emailPattern = Patterns.EMAIL_ADDRESS
@@ -24,32 +24,32 @@ class LoginActivity : AppCompatActivity() {
 
         try {
             this.supportActionBar!!.hide()
-            } catch (e: NullPointerException) {
+        } catch (e: NullPointerException) {
             Log.d("Error", e.toString())
         }
 
         setContentView(R.layout.activity_login)
 
-        button_login.setOnClickListener{
+        button_login.setOnClickListener {
             email = editText_email.text.toString()
             password = editText_password.text.toString()
 
             email.apply {
-                if(this.isBlank()){
-                    textEmailError.text = getString(R.string.textEmailError)
-                }else{
+                if (this.isBlank()) {
+                    textEmailError.text = getString(R.string.text_email_error)
+                } else {
                     textEmailError.text = ""
-                    if(validateEmail(this)){
+                    if (validateEmail(this)) {
                         validEmail = true
-                    }else{
-                        textEmailError.text = getString(R.string.textInvalidEmail)
+                    } else {
+                        textEmailError.text = getString(R.string.textView_Invalid_email)
                     }
                 }
             }
             password.apply {
-                if(this.isBlank()){
-                    textPasswordError.text = getString(R.string.textPasswordError)
-                }else{
+                if (this.isBlank()) {
+                    textPasswordError.text = getString(R.string.textView_password_error)
+                } else {
                     textPasswordError.text = ""
                     validPassword = true
                 }
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
             person.email = email
             person.password = password
 
-            if(validEmail && validPassword){
+            if (validEmail && validPassword) {
                 OnlineDentalClinicAPI.login(
                     person = person,
                     responseHandler = {
@@ -76,11 +76,11 @@ class LoginActivity : AppCompatActivity() {
                     responseError = {
                         val str: String = it.toString()
 
-                        if("Password incorrect" in str){
-                            textGeneralError.text = getString(R.string.textGeneralError)
+                        if ("Password incorrect" in str) {
+                            textGeneralError.text = getString(R.string.textView_general_error)
                             Log.d("Error password", "Password incorrect")
-                        }else if("[]" in str){
-                            textGeneralError.text = getString(R.string.textGeneralError)
+                        } else if ("[]" in str) {
+                            textGeneralError.text = getString(R.string.textView_general_error)
                             Log.d("Error email", "User not found")
                         }
                     },
@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateEmail(email: String): Boolean{
+    private fun validateEmail(email: String): Boolean {
         return emailPattern.matcher(email).matches()
     }
 }

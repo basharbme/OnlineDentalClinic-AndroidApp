@@ -2,13 +2,13 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:orientation="vertical">
+    android:layout_height="220dp"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_dentist"
+        android:id="@+id/card_people"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginLeft="@dimen/mtrl_card_spacing"
@@ -18,16 +18,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp">
+            android:layout_height="203dp"
+            android:background="@android:color/transparent">
 
             <TextView
-                android:id="@+id/nameDentist"
+                android:id="@+id/namePerson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="112dp"
-                android:text="@string/name"
+                android:text="@string/textView_name"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textDentist"
+                android:id="@+id/textViewPatient"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
@@ -46,7 +47,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/nameDentist" />
+                app:layout_constraintTop_toBottomOf="@+id/namePerson" />
 
             <TextView
                 android:id="@+id/dentistSpecialty"
@@ -55,13 +56,13 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:text="@string/dentist_specialty"
+                android:text="@string/textView_dentist_specialty"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/dividerVertical"
-                app:layout_constraintTop_toBottomOf="@+id/textDentist" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewPatient" />
 
             <TextView
                 android:id="@+id/textSpecialty"

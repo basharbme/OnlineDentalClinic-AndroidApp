@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="195dp"
+    android:layout_height="220dp"
     android:orientation="vertical"
     android:background="@android:color/transparent">
 
@@ -23,7 +23,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="203dp"
             android:background="@android:color/transparent">
 
             <TextView
@@ -136,7 +136,7 @@
                 android:layout_height="41dp"
                 android:layout_marginEnd="80dp"
                 android:layout_marginBottom="5dp"
-                android:text="@string/view"
+                android:text="@string/button_view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtSignsSymptoms"
@@ -149,7 +149,7 @@
                 android:layout_height="41dp"
                 android:layout_marginStart="80dp"
                 android:layout_marginBottom="5dp"
-                android:text="@string/edit"
+                android:text="@string/button_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtReasonConsultation"

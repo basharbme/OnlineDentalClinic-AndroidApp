@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.controllers.activities.ClinicActivity
-import com.healthapps.onlinedentalclinic.controllers.activities.DentistActivity
+import com.healthapps.onlinedentalclinic.controllers.activities.PersonActivity
 import com.healthapps.onlinedentalclinic.controllers.activities.MainActivity
 import com.healthapps.onlinedentalclinic.controllers.activities.ServiceActivity
 import com.healthapps.onlinedentalclinic.models.DentalAppointment
@@ -60,8 +60,8 @@ class CreateAppointmentFragment(private val listener: ClickListener) : Fragment(
         }
 
         textViewDentist.setOnClickListener {
-            MainActivity.textViewDentist = textViewDentist
-            activity!!.startActivity(Intent(activity, DentistActivity::class.java))
+            MainActivity.textViewPerson = textViewDentist
+            activity!!.startActivity(Intent(activity, PersonActivity::class.java))
         }
 
         textViewService.setOnClickListener {
@@ -92,8 +92,8 @@ class CreateAppointmentFragment(private val listener: ClickListener) : Fragment(
             val dentalAppointment = DentalAppointment()
             clickListener = listener
 
-            dentalAppointment.patients_id = MainActivity.patient
-            dentalAppointment.dentists_id = MainActivity.dentist
+            dentalAppointment.patients_id = MainActivity.currentUser
+            dentalAppointment.dentists_id = MainActivity.person
             dentalAppointment.clinics_id = MainActivity.clinic
             dentalAppointment.services_id = MainActivity.service
             dentalAppointment.date = textViewDate.text.toString()

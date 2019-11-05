@@ -1,22 +1,28 @@
 package com.healthapps.onlinedentalclinic.controllers.fragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
-import com.healthapps.onlinedentalclinic.controllers.adapters.HistoryAdapter
+import com.healthapps.onlinedentalclinic.controllers.activities.CreateDentalRecordActivity
+import com.healthapps.onlinedentalclinic.controllers.adapters.DentalRecordAdapter
 import com.healthapps.onlinedentalclinic.models.DentalRecords
 import com.healthapps.onlinedentalclinic.models.Person
 import com.healthapps.onlinedentalclinic.networking.OnlineDentalClinicAPI
+import com.healthapps.onlinedentalclinic.utils.SinglentonOnClick
 import kotlinx.android.synthetic.main.fragment_records.*
 
-class HistoryFragment : Fragment() {
+class DentalRecordFragment : Fragment() {
+
+    private var recyclerView: RecyclerView? = null
+    private var dataList: ArrayList<DentalRecords>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +35,9 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.RV_dental_records)
+        recyclerView = view.findViewById(R.id.RV_dental_records)
 
-        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+        recyclerView!!.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
 
         OnlineDentalClinicAPI.getDentalRecords(
             responseHandler = {
@@ -40,24 +46,22 @@ class HistoryFragment : Fragment() {
                 person.email = "healthappscompany@gmail.com"
                 person.password = "sergio1espinal"
 
-                val dataList: ArrayList<DentalRecords> = it as ArrayList<DentalRecords>
+                dataList = it as ArrayList<DentalRecords>
 
-                dataList.filter { user -> user.patients_id.email == person.email &&
+                dataList!!.filter { user -> user.patients_id.email == person.email &&
                         user.patients_id.password == person.password }
                 //pass the values to RvAdapter
-                val appAdapter = HistoryAdapter(dataList, object : HistoryAdapter.ClickListener {
+                val appAdapter = DentalRecordAdapter(dataList!!, object : DentalRecordAdapter.ClickListener {
                     override fun onClick(position: Int) {
-                        //appointmentSelected = dataList[position]
                         Log.d("Clicked from adapter", "Here fragment")
-                        dataList.removeAt(position)
+                        /*dataList.removeAt(position)
                         recyclerView.adapter!!.notifyItemRemoved(position)
                         recyclerView.adapter!!.notifyItemRangeChanged(position, dataList.size)
-                        recyclerView.adapter!!.notifyDataSetChanged()
-                        //recyclerView.adapter!!.notifyItemChanged(position)
+                        recyclerView.adapter!!.notifyDataSetChanged()*/
                     }
                 })
                 //set the recyclerView to the adapter
-                recyclerView.adapter = appAdapter
+                recyclerView!!.adapter = appAdapter
             },
             responseError = {
                 Log.d("Error", "Error $it.errorCode: $it.errorBody $it.localizedMessage")
@@ -66,19 +70,24 @@ class HistoryFragment : Fragment() {
         )
 
         record_floating_action_button.setOnClickListener {
-            val createAppointments = CreateAppointmentFragment(object : CreateAppointmentFragment.ClickListener {
-                override fun onClick(save: Boolean) {
-                    if(save){
-                        recyclerView.adapter!!.notifyDataSetChanged()
-                    }
-                }
-            })
-            val fragmentTransaction: FragmentTransaction = getFragmentManager()!!.beginTransaction()
+            val requestCode = 1
 
-            fragmentTransaction.replace(R.id.nav_host_fragment, createAppointments)
-            fragmentTransaction.setPrimaryNavigationFragment(createAppointments)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            startActivityForResult(Intent(activity, CreateDentalRecordActivity::class.java), requestCode)
+            // activity!!.startActivity(Intent(activity, CreateDentalRecordActivity::class.java))
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1){
+            val pos = dataList!!.size
+
+            if( resultCode == RESULT_OK){
+                if (data != null){
+                    dataList!!.add(data!!.extras!!.getSerializable("dentalRecords") as DentalRecords)
+                    recyclerView!!.adapter!!.notifyItemChanged(pos + 1, dataList)
+                }
+            }
         }
     }
 }

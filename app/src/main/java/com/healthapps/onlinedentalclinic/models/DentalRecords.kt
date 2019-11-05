@@ -56,7 +56,7 @@ data class DentalRecords(
         ""
     )
 
-    fun convertToJson(): JSONObject{
+    fun convertToJson(): JSONObject {
         val jsonDentalRecords = JSONObject()
         val jsonPatients = patients_id.convertToJson()
         val jsonDentist = dentists_id.convertToJson()

@@ -3,8 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="198dp"
-    android:orientation="vertical">
+    android:layout_height="220dp"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_clinics"
@@ -17,7 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="203dp"
+            android:background="@android:color/transparent">
 
             <TextView
                 android:id="@+id/attention_hour"
@@ -26,7 +28,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:text="@string/attention_hours"
+                android:text="@string/textView_attention_hours"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +57,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="112dp"
-                android:text="@string/name"
+                android:text="@string/textView_name"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +85,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:text="@string/clinic_address"
+                android:text="@string/textView_clinic_address"
                 android:textColor="#424242"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"

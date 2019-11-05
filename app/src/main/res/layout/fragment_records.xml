@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".controllers.fragments.HistoryFragment">
+    tools:context=".controllers.fragments.DentalRecordFragment">
 
     <!-- Main content -->
     <androidx.recyclerview.widget.RecyclerView

@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.models.Person
 
-class DentistAdapter(private val dentistsList: ArrayList<Person>, private val listener: ClickLister) :
-    RecyclerView.Adapter<DentistAdapter.ViewHolder>(){
+class PersonAdapter(private val peopleList: ArrayList<Person>, private val listener: ClickLister) :
+    RecyclerView.Adapter<PersonAdapter.ViewHolder>(){
 
     open interface ClickLister{
         fun onClick(position: Int)
@@ -21,20 +21,20 @@ class DentistAdapter(private val dentistsList: ArrayList<Person>, private val li
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.adapter_dentist, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.adapter_person, parent, false)
         return ViewHolder(v)
     }
 
     override fun getItemCount(): Int {
-        return dentistsList.size
+        return peopleList.size
     }
 
     override fun onBindViewHolder(parent: ViewHolder, position: Int) {
         clickListener = listener
 
-        parent.name?.text = dentistsList[position].fullname
-        parent.specialty?.text = dentistsList[position].roleId.description
-        parent.cardViewDentist.setOnClickListener {
+        parent.name?.text = peopleList[position].fullname
+        parent.specialty?.text = peopleList[position].roleId.description
+        parent.cardViewPerson.setOnClickListener {
             if(clickListener != null){
                 clickListener?.onClick(position)
             }
@@ -42,8 +42,8 @@ class DentistAdapter(private val dentistsList: ArrayList<Person>, private val li
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val name: TextView = itemView.findViewById(R.id.textDentist)
+        val name: TextView = itemView.findViewById(R.id.textViewPatient)
         val specialty: TextView = itemView.findViewById(R.id.textSpecialty)
-        val cardViewDentist: CardView = itemView.findViewById(R.id.card_dentist)
+        val cardViewPerson: CardView = itemView.findViewById(R.id.card_people)
     }
 }

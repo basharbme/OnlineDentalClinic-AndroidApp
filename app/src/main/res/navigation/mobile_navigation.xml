@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_records"
-        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.HistoryFragment"
-        android:label="@string/title_history"
+        android:name="com.healthapps.onlinedentalclinic.controllers.fragments.DentalRecordFragment"
+        android:label="@string/title_record"
         tools:layout="@layout/fragment_records" />
 
     <fragment
@@ -38,5 +38,5 @@
     <fragment
         android:id="@+id/create_appointments"
         android:name="com.healthapps.onlinedentalclinic.controllers.fragments.CreateAppointmentFragment"
-        android:label="@string/create_appointments" />
+        android:label="@string/button_create_appointments" />
 </navigation>

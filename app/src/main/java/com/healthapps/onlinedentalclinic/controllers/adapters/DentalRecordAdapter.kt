@@ -1,23 +1,18 @@
 package com.healthapps.onlinedentalclinic.controllers.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.healthapps.onlinedentalclinic.R
 import com.healthapps.onlinedentalclinic.models.DentalRecords
-import com.healthapps.onlinedentalclinic.networking.OnlineDentalClinicAPI
 
-class HistoryAdapter(private val dentalRecordsList: ArrayList<DentalRecords>,
-                     private val listener: ClickListener) :
-    RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class DentalRecordAdapter(private val dentalRecordsList: ArrayList<DentalRecords>,
+                          private val listener: ClickListener) :
+    RecyclerView.Adapter<DentalRecordAdapter.ViewHolder>() {
 
     var context: Context? = null
 
