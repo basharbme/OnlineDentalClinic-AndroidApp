@@ -11,11 +11,11 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button_next_anamnesis"
+            android:id="@+id/button_save_anamnesis"
             android:layout_width="334dp"
             android:layout_height="wrap_content"
             android:background="#3F51B5"
-            android:text="@string/button_next"
+            android:text="@string/button_ok"
             android:stateListAnimator="@null"
 
             app:layout_constraintBottom_toBottomOf="parent"

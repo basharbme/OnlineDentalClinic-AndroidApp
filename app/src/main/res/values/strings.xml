@@ -50,4 +50,14 @@
     <string name="textView_treatment_plan">Treatment plan</string>
     <string name="textView_control_evolution">Control and evolution</string>
     <string name="textView_patient_discharge">Patient discharge</string>
+    <string name="button_anamnasis">Anamnasis</string>
+    <string name="button_medical_consultation">Medical consultation</string>
+    <string name="button_current_illness">Current illness</string>
+    <string name="button_background">Background</string>
+    <string name="button_clinic_examination">Clinic examination</string>
+    <string name="button_diagnosis">Diagnosis</string>
+    <string name="button_treatment_plan">Treatment plan</string>
+    <string name="button_control_evolution">Control and evolution</string>
+    <string name="button_patient_discharge">Patient discharge</string>
+    <string name="button_ok">OK</string>
 </resources>

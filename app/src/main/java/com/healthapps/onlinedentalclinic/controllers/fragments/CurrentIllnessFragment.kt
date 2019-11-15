@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import com.healthapps.onlinedentalclinic.R
@@ -81,6 +82,12 @@ class CurrentIllnessFragment(private val listener: ClickListener) : Fragment() {
                 if (isBlankCounter == 3) {
                     isBlankCounter = 0
                     clickListener?.onClick(true, currentIllness)
+
+                    val fragmentTransaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+
+                    fragmentTransaction.remove(this)
+                    fragmentTransaction.commit()
+                    fragmentManager!!.popBackStack()
                 } else {
                     isBlankCounter = 0
 

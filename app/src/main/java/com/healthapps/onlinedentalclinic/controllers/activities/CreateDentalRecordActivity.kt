@@ -2,19 +2,19 @@ package com.healthapps.onlinedentalclinic.controllers.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
-import com.google.android.material.tabs.TabLayout
+import android.view.View
+import androidx.fragment.app.FragmentTransaction
 import com.healthapps.onlinedentalclinic.R
-import com.healthapps.onlinedentalclinic.controllers.adapters.ViewPagerAdapter
 import com.healthapps.onlinedentalclinic.controllers.fragments.*
 import com.healthapps.onlinedentalclinic.models.DentalRecords
 import com.healthapps.onlinedentalclinic.models.Person
 import com.healthapps.onlinedentalclinic.networking.OnlineDentalClinicAPI
-import com.healthapps.onlinedentalclinic.utils.SinglentonOnClick
 import kotlinx.android.synthetic.main.activity_create_dental_record.*
+import java.lang.Exception
 
 class CreateDentalRecordActivity : AppCompatActivity() {
 
@@ -33,15 +33,13 @@ class CreateDentalRecordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_dental_record)
 
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-
         val anamnesisFragment = AnamnesisFragment(object : AnamnesisFragment.ClickListener {
             override fun onClick(save: Boolean, anamnesis: Map<String, Any>) {
                 if (save) {
                     this@CreateDentalRecordActivity.anamnesis = anamnesis
                     Log.d("Anamnsis", this@CreateDentalRecordActivity.anamnesis.toString())
-                    enableTab(tabs, 1)
-                    viewPager.currentItem = 1
+                    textView_anamnasis.setTextColor(Color.BLUE)
+                    viewOptions(true, View.VISIBLE)
                 }
             }
         })
@@ -55,8 +53,8 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                             "Reason consultation",
                             this@CreateDentalRecordActivity.reasonConsultation.toString()
                         )
-                        enableTab(tabs, 2)
-                        viewPager.currentItem = 2
+                        textView_medical_consultation.setTextColor(Color.BLUE)
+                        viewOptions(true, View.VISIBLE)
                     }
                 }
             })
@@ -70,8 +68,8 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                             "Current illness",
                             this@CreateDentalRecordActivity.currentIllness.toString()
                         )
-                        enableTab(tabs, 3)
-                        viewPager.currentItem = 3
+                        textView_current_illness.setTextColor(Color.BLUE)
+                        viewOptions(true, View.VISIBLE)
                     }
                 }
             })
@@ -81,8 +79,8 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                 if (save) {
                     this@CreateDentalRecordActivity.background = background
                     Log.d("Background", this@CreateDentalRecordActivity.background.toString())
-                    enableTab(tabs, 4)
-                    viewPager.currentItem = 4
+                    textView_background.setTextColor(Color.BLUE)
+                    viewOptions(true, View.VISIBLE)
                 }
             }
         })
@@ -96,8 +94,8 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                             "Clinic examination",
                             this@CreateDentalRecordActivity.clinicExamination.toString()
                         )
-                        enableTab(tabs, 5)
-                        viewPager.currentItem = 5
+                        textView_clinic_examination.setTextColor(Color.BLUE)
+                        viewOptions(true, View.VISIBLE)
                     }
                 }
             })
@@ -107,8 +105,8 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                 if (save) {
                     this@CreateDentalRecordActivity.diagnosis = diagnosis
                     Log.d("Diagnosis", this@CreateDentalRecordActivity.diagnosis.toString())
-                    enableTab(tabs, 6)
-                    viewPager.currentItem = 6
+                    textView_diagnosis.setTextColor(Color.BLUE)
+                    viewOptions(true, View.VISIBLE)
                 }
             }
         })
@@ -122,8 +120,8 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                             "Treatment plan",
                             this@CreateDentalRecordActivity.treatmentPlan.toString()
                         )
-                        enableTab(tabs, 7)
-                        viewPager.currentItem = 7
+                        textView_treatment_plan.setTextColor(Color.BLUE)
+                        viewOptions(true, View.VISIBLE)
                     }
                 }
             })
@@ -137,8 +135,8 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                             "Control and evolution",
                             this@CreateDentalRecordActivity.controlEvolution.toString()
                         )
-                        enableTab(tabs, 8)
-                        viewPager.currentItem = 8
+                        textView_control_evolution.setTextColor(Color.BLUE)
+                        viewOptions(true, View.VISIBLE)
                     }
                 }
             })
@@ -147,34 +145,39 @@ class CreateDentalRecordActivity : AppCompatActivity() {
             PatientDischargeFragment(object : PatientDischargeFragment.ClickListener {
                 override fun onClick(save: Boolean, patientDischarge: Map<String, Any>) {
                     if (save) {
-                        this@CreateDentalRecordActivity.patientDischarge = patientDischarge
-                        Log.d("Patient discharge", patientDischarge.toString())
-                        dentalRecords.dentists_id = MainActivity.currentUser
-                        dentalRecords.patients_id = anamnesis["patient"] as Person
-                        dentalRecords.birthplace = anamnesis["birthplace"] as String
-                        dentalRecords.birthday = anamnesis["birthday"] as String
-                        dentalRecords.travels = anamnesis["travels"] as String
-                        dentalRecords.phone = anamnesis["phone"] as String
-                        dentalRecords.reason_consultation =
-                            reasonConsultation["reason_consultation"] as String
-                        dentalRecords.sick_time = currentIllness["sick_time"] as String
-                        dentalRecords.signs_symptoms = currentIllness["signs_symptoms"] as String
-                        dentalRecords.biological_functions =
-                            currentIllness["biological_functions"] as String
-                        dentalRecords.personal_history = background["personal_history"] as String
-                        dentalRecords.family_background = background["background_family"] as String
-                        dentalRecords.vital_signs = clinicExamination["vital_signs"] as String
-                        dentalRecords.general_exam_data =
-                            clinicExamination["general_clinic_examination"] as String
-                        dentalRecords.odontostomatological_exam =
-                            clinicExamination["odontostomatological_exam"] as String
-                        dentalRecords.presumptive_diagnosis =
-                            diagnosis["presumptive_diagnosis"] as String
-                        dentalRecords.treatment_plan = treatmentPlan["treatment_plan"] as String
-                        dentalRecords.control_evolution =
-                            controlEvolution["control_evolution"] as String
-                        dentalRecords.patient_discharge =
-                            patientDischarge["patient_discharge"] as String
+
+                        try {
+                            this@CreateDentalRecordActivity.patientDischarge = patientDischarge
+                            Log.d("Patient discharge", patientDischarge.toString())
+                            dentalRecords.dentists_id = MainActivity.currentUser
+                            dentalRecords.patients_id = anamnesis["patient"] as Person
+                            dentalRecords.birthplace = anamnesis["birthplace"] as String
+                            dentalRecords.birthday = anamnesis["birthday"] as String
+                            dentalRecords.travels = anamnesis["travels"] as String
+                            dentalRecords.phone = anamnesis["phone"] as String
+                            dentalRecords.reason_consultation =
+                                reasonConsultation["reason_consultation"] as String
+                            dentalRecords.sick_time = currentIllness["sick_time"] as String
+                            dentalRecords.signs_symptoms = currentIllness["signs_symptoms"] as String
+                            dentalRecords.biological_functions =
+                                currentIllness["biological_functions"] as String
+                            dentalRecords.personal_history = background["personal_history"] as String
+                            dentalRecords.family_background = background["background_family"] as String
+                            dentalRecords.vital_signs = clinicExamination["vital_signs"] as String
+                            dentalRecords.general_exam_data =
+                                clinicExamination["general_clinic_examination"] as String
+                            dentalRecords.odontostomatological_exam =
+                                clinicExamination["odontostomatological_exam"] as String
+                            dentalRecords.presumptive_diagnosis =
+                                diagnosis["presumptive_diagnosis"] as String
+                            dentalRecords.treatment_plan = treatmentPlan["treatment_plan"] as String
+                            dentalRecords.control_evolution =
+                                controlEvolution["control_evolution"] as String
+                            dentalRecords.patient_discharge =
+                                patientDischarge["patient_discharge"] as String
+                        }catch (e: Exception) {
+                            print(e.localizedMessage)
+                        }
 
                         OnlineDentalClinicAPI.saveDentalRecords(
                             dentalRecords = dentalRecords,
@@ -194,44 +197,143 @@ class CreateDentalRecordActivity : AppCompatActivity() {
                         intentResult.putExtra("dentalRecords", dentalRecords)
                         setResult(Activity.RESULT_OK, intentResult)
 
+                        textView_patient_discharge.setTextColor(Color.BLUE)
+                        viewOptions(true, View.VISIBLE)
                         finish()
                     }
                 }
             })
 
-        adapter.addFragment(anamnesisFragment, "Anamnasis")
-        adapter.addFragment(medicalConsultationFragment, "Medical consultation")
-        adapter.addFragment(currentIllnessFragment, "Current illness")
-        adapter.addFragment(backgroundFragment, "Background")
-        adapter.addFragment(clinicExaminationFragment, "Clinic examination")
-        adapter.addFragment(diagnosisFragment, "Diagnosis")
-        adapter.addFragment(treatmentPlanFragment, "Treatment plan")
-        adapter.addFragment(controlEvolutionFragment, "Control and evolution")
-        adapter.addFragment(patientDischargeFragment, "Patient discharge")
+        textView_anamnasis.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment__create_dental_Records, anamnesisFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
 
-        viewPager.adapter = adapter
-        viewPager.beginFakeDrag()
-        tabs.setupWithViewPager(viewPager)
+            viewOptions(false, View.INVISIBLE)
+        }
 
-        disableTab(tabs, 1)
-        disableTab(tabs, 2)
-        disableTab(tabs, 3)
-        disableTab(tabs, 4)
-        disableTab(tabs, 5)
-        disableTab(tabs, 6)
-        disableTab(tabs, 7)
-        disableTab(tabs, 8)
+        textView_medical_consultation.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.fragment__create_dental_Records,
+                medicalConsultationFragment
+            )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
+
+        textView_current_illness.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.fragment__create_dental_Records,
+                currentIllnessFragment
+            )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
+
+        textView_background.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment__create_dental_Records, backgroundFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
+
+        textView_clinic_examination.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.fragment__create_dental_Records,
+                clinicExaminationFragment
+            )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
+
+        textView_diagnosis.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment__create_dental_Records, diagnosisFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
+
+        textView_treatment_plan.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment__create_dental_Records, treatmentPlanFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
+
+        textView_control_evolution.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.fragment__create_dental_Records,
+                controlEvolutionFragment
+            )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
+
+        textView_patient_discharge.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.fragment__create_dental_Records,
+                patientDischargeFragment
+            )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+            viewOptions(false, View.INVISIBLE)
+        }
     }
 
-    private fun enableTab(tabLayout: TabLayout, index: Int) {
-        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = true
-        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).alpha = 1.0F
-        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isClickable = true
+    private fun viewOptions(click: Boolean, visibility: Int) {
+        textView_anamnasis.isClickable = click
+        textView_anamnasis.visibility = visibility
+        textView_current_illness.isClickable = click
+        textView_current_illness.visibility = visibility
+        textView_background.isClickable = click
+        textView_background.visibility = visibility
+        textView_medical_consultation.isClickable = click
+        textView_medical_consultation.visibility = visibility
+        textView_clinic_examination.isClickable = click
+        textView_clinic_examination.visibility = visibility
+        textView_control_evolution.isClickable = click
+        textView_control_evolution.visibility = visibility
+        textView_diagnosis.isClickable = click
+        textView_diagnosis.visibility = visibility
+        textView_treatment_plan.isClickable = click
+        textView_treatment_plan.visibility = visibility
+        textView_patient_discharge.isClickable = click
+        textView_patient_discharge.visibility = visibility
+        divider_.visibility = visibility
+        divider_6.visibility = visibility
+        divider_7.visibility = visibility
+        divider_8.visibility = visibility
+        divider_9.visibility = visibility
+        divider_10.visibility = visibility
+        divider_11.visibility = visibility
+        divider_12.visibility = visibility
+        divider_13.visibility = visibility
     }
 
-    private fun disableTab(tabLayout: TabLayout, index: Int) {
-        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isEnabled = false
-        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).alpha = 0.5F
-        (tabLayout.getChildAt(0) as ViewGroup).getChildAt(index).isClickable = false
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        viewOptions(true, View.VISIBLE)
     }
 }
