@@ -10,7 +10,7 @@
 
     <!-- Main content -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RV_odontograms"
+        android:id="@+id/RV_dental_piece"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="?attr/actionBarSize"
@@ -18,16 +18,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="end|bottom"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="70dp"
-        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

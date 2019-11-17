@@ -21,6 +21,7 @@ class OnlineDentalClinicAPI {
         private val dentalAppointmentsURL = "$BASE_URL/dental-appointments"
         private val dentalRecordsURL = "$BASE_URL/dental-records"
         private val odontogramsURL = "$BASE_URL/odontograms"
+        private val dentalPiecesURL = "$BASE_URL/dental-pieces"
         private val clinicsURL = "$BASE_URL/clinics"
         private val employeesURL = "$BASE_URL/employees"
         private val servicesURL = "$BASE_URL/services"
@@ -49,6 +50,19 @@ class OnlineDentalClinicAPI {
         ) {
             get(
                 dentalAppointmentsURL,
+                responseHandler,
+                responseError,
+                token
+            )
+        }
+
+        //Get-All
+        fun getOdontograms(
+            responseHandler: (ArrayList<Odontogram>?) -> Unit,
+            responseError: (ANError?) -> Unit, token: String
+        ) {
+            get(
+                odontogramsURL,
                 responseHandler,
                 responseError,
                 token
@@ -128,6 +142,20 @@ class OnlineDentalClinicAPI {
             post(
                 dentalRecords.convertToJson(),
                 dentalRecordsURL,
+                responseHandler,
+                responseError,
+                token
+            )
+        }
+
+        //Save-Odontograms
+        fun saveOdontograms(
+            odontograms: Odontogram, responseHandler: (JSONObject?) -> Unit,
+            responseError: (ANError?) -> Unit, token: String
+        ) {
+            post(
+                odontograms.convertToJson(),
+                odontogramsURL,
                 responseHandler,
                 responseError,
                 token
