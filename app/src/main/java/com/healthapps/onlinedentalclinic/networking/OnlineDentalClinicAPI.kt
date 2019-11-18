@@ -121,6 +121,20 @@ class OnlineDentalClinicAPI {
             )
         }
 
+        //Get-Dental piece by odontogram
+        fun getDentalPieceByOdontogram(
+            odontogram: Odontogram, responseHandler: (ArrayList<DentalPiece>?) -> Unit,
+            responseError: (ANError?) -> Unit, token: String
+        ) {
+            getByModel(
+                odontogram.convertToJson(),
+                "$dentalPiecesURL/odontogram",
+                responseHandler,
+                responseError,
+                token
+            )
+        }
+
         //Save-Appointments
         fun saveAppointments(
             dentalAppointments: DentalAppointment, responseHandler: (JSONObject?) -> Unit,
@@ -156,6 +170,20 @@ class OnlineDentalClinicAPI {
             post(
                 odontograms.convertToJson(),
                 odontogramsURL,
+                responseHandler,
+                responseError,
+                token
+            )
+        }
+
+        //Save-Dental piece
+        fun saveDentalPiece(
+            dentalPiece: DentalPiece, responseHandler: (JSONObject?) -> Unit,
+            responseError: (ANError?) -> Unit, token: String
+        ) {
+            post(
+                dentalPiece.convertToJson(),
+                dentalPiecesURL,
                 responseHandler,
                 responseError,
                 token
@@ -203,6 +231,35 @@ class OnlineDentalClinicAPI {
                 )
         }
 
+        //Get by model
+        private inline fun <reified T> getByModel(
+            jsonObj: JSONObject, url: String,
+            crossinline responseHandler: (ArrayList<T>?) -> Unit,
+            crossinline responseError: (ANError?) -> Unit, token: String
+        ) {
+            AndroidNetworking.post(url)
+                .addHeaders("Authorization", "Bearer $token")
+                .addHeaders("Content-Type", "application/json")
+                .addJSONObjectBody(jsonObj)
+                .setTag(TAG)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsObjectList(
+                    T::class.java,
+                    object : ParsedRequestListener<ArrayList<T>> {
+                        override fun onResponse(response: ArrayList<T>) {
+                            responseHandler(response)
+                            Log.d("Dental pieces", response.toString())
+                        }
+
+                        override fun onError(anError: ANError?) {
+                            responseError(anError)
+                        }
+                    }
+                )
+        }
+
+        //Get-All
         private inline fun <reified T> get(
             url: String, crossinline responseHandler: (ArrayList<T>?) -> Unit,
             crossinline responseError: (ANError?) -> Unit, token: String

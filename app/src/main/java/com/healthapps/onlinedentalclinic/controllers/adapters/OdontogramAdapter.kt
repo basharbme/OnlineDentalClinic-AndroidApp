@@ -3,6 +3,7 @@ package com.healthapps.onlinedentalclinic.controllers.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,7 @@ class OdontogramAdapter(private val odontogramList: ArrayList<Odontogram>, priva
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.adapter_patient, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.adapter_odontogram, parent, false)
         return ViewHolder(v)
     }
 
@@ -34,7 +35,7 @@ class OdontogramAdapter(private val odontogramList: ArrayList<Odontogram>, priva
 
         parent.name.text = odontogramList[position].patients_id.fullname
         parent.age.text = odontogramList[position].patients_id.age.toString()
-        parent.cardViewOdontogram.setOnClickListener {
+        parent.createDentalPiece.setOnClickListener {
             if(clickListener != null){
                 clickListener?.onClick(position)
             }
@@ -44,6 +45,6 @@ class OdontogramAdapter(private val odontogramList: ArrayList<Odontogram>, priva
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val name: TextView = itemView.findViewById(R.id.textViewPatient)
         val age: TextView = itemView.findViewById(R.id.textViewAge)
-        val cardViewOdontogram: CardView = itemView.findViewById(R.id.card_patient)
+        val createDentalPiece: Button = itemView.findViewById(R.id.create_button)
     }
 }

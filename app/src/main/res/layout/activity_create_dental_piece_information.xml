@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controllers.activities.CreateDentalPieceInformationActivity">
+
+    <ImageView
+        android:id="@+id/imageView_dental_piece_information"
+        android:layout_width="110dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:background="#B3E5FC"
+        android:contentDescription="@string/dental_piece"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_save_dental_piece_information"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:background="#3F51B5"
+        android:stateListAnimator="@null"
+        android:text="@string/button_ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_2"
+        app:layout_constraintVertical_bias="0.13999999" />
+
+    <TextView
+        android:id="@+id/textViewCode"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCode" />
+
+    <TextView
+        android:id="@+id/descriptionCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="16dp"
+        tools:text="Code"
+        android:text=""
+        android:textColor="#424242"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:maxLines="10"
+        android:minLines="6"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionDentalPiece" />
+
+    <TextView
+        android:id="@+id/descriptionDentalPiece"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="16dp"
+        tools:text="Description"
+        android:text=""
+        android:textColor="#424242"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCode" />
+
+    <View
+        android:id="@+id/divider_1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="85dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider_2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="205dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

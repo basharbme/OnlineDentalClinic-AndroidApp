@@ -58,6 +58,13 @@ class OdontogramFragment : Fragment() {
                     override fun onClick(position: Int) {
                         Log.d("Clicked from adapter", "Here fragment")
                         //recyclerView.adapter!!.notifyItemChanged(position)
+
+                        val requestCode = 3
+                        val intentSend = Intent(activity, CreateDentalPieceActivity::class.java)
+
+                        intentSend.putExtra("odontogram", dataList!![position])
+                        startActivityForResult(intentSend, requestCode)
+
                     }
                 })
                 //set the recyclerView to the adapter
@@ -72,8 +79,7 @@ class OdontogramFragment : Fragment() {
         floating_action_button.setOnClickListener {
             val requestCode = 2
 
-            //startActivityForResult(Intent(activity, CreateOdontogramActivity::class.java), requestCode)
-            startActivityForResult(Intent(activity, CreateDentalPieceActivity::class.java), requestCode)
+            startActivityForResult(Intent(activity, CreateOdontogramActivity::class.java), requestCode)
         }
     }
 

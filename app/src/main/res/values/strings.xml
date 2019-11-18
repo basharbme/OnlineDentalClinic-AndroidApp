@@ -61,4 +61,5 @@
     <string name="button_patient_discharge">Patient discharge</string>
     <string name="button_ok">OK</string>
     <string name="dental_piece">Dental piece</string>
+    <string name="button_create">Create</string>
 </resources>

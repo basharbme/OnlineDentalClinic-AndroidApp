@@ -4,7 +4,7 @@ import org.json.JSONObject
 import java.io.Serializable
 
 data class Clinic(
-    var id: String,
+    var _id: String,
     var name: String,
     var description: String,
     var address: String,
@@ -22,7 +22,7 @@ data class Clinic(
     fun convertToJson(): JSONObject{
         val jsonClinics = JSONObject()
 
-        jsonClinics.put("_id", id)
+        jsonClinics.put("_id", _id)
         jsonClinics.put("name", name)
         jsonClinics.put("description", description)
         jsonClinics.put("address", address)

@@ -25,7 +25,7 @@ data class Person(
         val jsonPerson = JSONObject()
         val jsonRole = roleId.convertToJson()
 
-        jsonPerson.put("_id", id)
+        jsonPerson.put("id", id)
         jsonPerson.put("fullname", fullname)
         jsonPerson.put("age", age)
         jsonPerson.put("email", email)
